@@ -37,8 +37,8 @@ The pipeline incorporates the following steps:
 
 ```bash
 # Clone this repository
-git clone https://github.com/username/in-silico-vaccine-design.git
-cd in-silico-vaccine-design
+git clone [https://github.com/username/in-silico-vaccine-design.git](https://github.com/fadindashafira/h5n1-insilico-vaccine-epitopes.git)
+cd h5n1-insilico-vaccine-epitopes
 
 # Run with default parameters
 ./run_pipeline.sh
