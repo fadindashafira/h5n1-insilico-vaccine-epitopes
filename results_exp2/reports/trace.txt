@@ -1,0 +1,17 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+2	28/746621	69056	retrieveNA (neuraminidase:BAL61230.1)	COMPLETED	0	2025-04-24 21:11:56.162	2.7s	2s	-	-	-	-	-
+4	5e/163ece	69112	predictNATCellEpitopesI (neuraminidase:neuraminidase_BAL61230.1)	COMPLETED	0	2025-04-24 21:11:58.949	805ms	1s	-	-	-	-	-
+5	61/21d8a0	69120	predictNATCellEpitopesII (neuraminidase:neuraminidase_BAL61230.1)	COMPLETED	0	2025-04-24 21:11:58.955	799ms	1s	-	-	-	-	-
+1	60/2abd75	69054	retrieveHA (hemagglutinin:BAL61222.1)	COMPLETED	0	2025-04-24 21:11:56.156	7.4s	7s	-	-	-	-	-
+6	5c/0f7344	69199	predictHATCellEpitopesI (hemagglutinin:hemagglutinin_BAL61222.1)	COMPLETED	0	2025-04-24 21:12:03.589	600ms	1s	-	-	-	-	-
+7	01/36553e	69206	predictHATCellEpitopesII (hemagglutinin:hemagglutinin_BAL61222.1)	COMPLETED	0	2025-04-24 21:12:03.598	601ms	1s	-	-	-	-	-
+3	72/5036a3	69107	predictNABCellEpitopes (neuraminidase:neuraminidase_BAL61230.1)	COMPLETED	0	2025-04-24 21:11:58.934	5.6s	6s	-	-	-	-	-
+9	48/02aa98	69275	combineNAEpitopes (neuraminidase:combine_epitopes)	COMPLETED	0	2025-04-24 21:12:04.529	516ms	1s	-	-	-	-	-
+10	ae/e30145	69311	designNAVaccine (neuraminidase:design_vaccine)	COMPLETED	0	2025-04-24 21:12:05.069	389ms	0ms	-	-	-	-	-
+11	0e/08e674	69332	evaluateNAVaccine (neuraminidase:evaluate_vaccine)	COMPLETED	0	2025-04-24 21:12:05.472	2.8s	3s	-	-	-	-	-
+8	3c/bf7cb7	69198	predictHABCellEpitopes (hemagglutinin:hemagglutinin_BAL61222.1)	COMPLETED	0	2025-04-24 21:12:03.582	6.5s	7s	-	-	-	-	-
+12	a1/1f83aa	69376	combineHAEpitopes (hemagglutinin:combine_epitopes)	COMPLETED	0	2025-04-24 21:12:10.120	391ms	0ms	-	-	-	-	-
+13	ae/833101	69411	designHAVaccine (hemagglutinin:design_vaccine)	COMPLETED	0	2025-04-24 21:12:10.532	388ms	0ms	-	-	-	-	-
+14	d4/4d75c0	69413	designCombinedVaccine (combined:design_vaccine)	COMPLETED	0	2025-04-24 21:12:10.539	467ms	1s	-	-	-	-	-
+16	d4/93c9d7	69476	evaluateCombinedVaccine (combined:evaluate_vaccine)	COMPLETED	0	2025-04-24 21:12:11.022	2.2s	2s	-	-	-	-	-
+15	e8/3e2910	69455	evaluateHAVaccine (hemagglutinin:evaluate_vaccine)	COMPLETED	0	2025-04-24 21:12:10.933	3.2s	4s	-	-	-	-	-
