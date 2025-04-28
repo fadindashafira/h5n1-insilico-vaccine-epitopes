@@ -5,6 +5,37 @@ import subprocess
 import argparse
 from datetime import datetime
 
+def calculate_similarity(seq1, seq2):
+    """Calculate sequence similarity between two peptides"""
+    # For shorter sequences, check if one is contained in the other
+    if len(seq1) <= len(seq2) and seq1 in seq2:
+        return 1.0
+    if len(seq2) <= len(seq1) and seq2 in seq1:
+        return 1.0
+    
+    # For sequences of same length, calculate percent identity
+    if len(seq1) == len(seq2):
+        matches = sum(a == b for a, b in zip(seq1, seq2))
+        return matches / len(seq1)
+    
+    # For different length sequences, use a sliding window approach
+    min_len = min(len(seq1), len(seq2))
+    max_similarity = 0
+    
+    # Check if shorter sequence is similar to any part of longer sequence
+    if len(seq1) < len(seq2):
+        shorter, longer = seq1, seq2
+    else:
+        shorter, longer = seq2, seq1
+        
+    for i in range(len(longer) - len(shorter) + 1):
+        substring = longer[i:i+len(shorter)]
+        matches = sum(a == b for a, b in zip(shorter, substring))
+        similarity = matches / len(shorter)
+        max_similarity = max(max_similarity, similarity)
+    
+    return max_similarity
+
 def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='Design vaccine construct from epitopes')
@@ -17,6 +48,7 @@ def main():
     parser.add_argument('--trailing-seq', default='', help='Sequence to add at the C-terminus')
     parser.add_argument('--output-fasta', required=True, help='Output FASTA file for vaccine construct')
     parser.add_argument('--output-report', required=True, help='Output HTML report file')
+    parser.add_argument('--similarity-threshold', type=float, default=0.7, help='Similarity threshold for epitope diversity (0-1)')
     
     args = parser.parse_args()
     
@@ -35,11 +67,41 @@ def main():
         from Bio.Seq import Seq
         from Bio import SeqIO
     
+    # Define select_diverse_epitopes function inside main to access pandas
+    def select_diverse_epitopes(epitopes_df, max_epitopes, similarity_threshold=0.7):
+        """Select diverse set of epitopes based on score and sequence diversity"""
+        selected = []
+        
+        # Sort by score descending
+        sorted_epitopes = epitopes_df.sort_values('consensus_score', ascending=False)
+        
+        for _, epitope in sorted_epitopes.iterrows():
+            seq = epitope['sequence']
+            
+            # Check if this sequence is too similar to already selected ones
+            too_similar = False
+            for selected_epitope in selected:
+                similarity = calculate_similarity(seq, selected_epitope['sequence'])
+                if similarity > similarity_threshold:
+                    too_similar = True
+                    break
+                    
+            # Only add if not too similar to existing selections
+            if not too_similar:
+                selected.append(epitope)
+                
+                # Stop once we have enough epitopes
+                if len(selected) >= max_epitopes:
+                    break
+                    
+        return pd.DataFrame(selected) if selected else pd.DataFrame(columns=epitopes_df.columns)
+    
     import os
     
     print(f"Designing vaccine construct for {args.protein_type}")
     print(f"Using linker sequence: {args.linker}")
     print(f"Maximum number of epitopes: {args.max_epitopes}")
+    print(f"Similarity threshold: {args.similarity_threshold}")
     
     # Read the combined epitopes
     try:
@@ -56,25 +118,72 @@ def main():
         epitope_sequences = []
         selected_epitopes = pd.DataFrame()
     else:
-        # Group by type and select top epitopes from each
-        b_cell_count = args.max_epitopes // 3
-        mhc_i_count = args.max_epitopes // 3
-        mhc_ii_count = args.max_epitopes - b_cell_count - mhc_i_count  # Ensure we use exactly max_epitopes
-        
-        bcell_epitopes = epitopes_df[epitopes_df['type'] == 'B-cell'].sort_values('consensus_score', ascending=False).head(b_cell_count)
-        mhci_epitopes = epitopes_df[epitopes_df['type'] == 'MHC-I'].sort_values('consensus_score', ascending=False).head(mhc_i_count)
-        mhcii_epitopes = epitopes_df[epitopes_df['type'] == 'MHC-II'].sort_values('consensus_score', ascending=False).head(mhc_ii_count)
-        
-        # Combine selected epitopes
-        selected_epitopes = pd.concat([bcell_epitopes, mhci_epitopes, mhcii_epitopes])
-        
-        # Limit to max_epitopes
-        selected_epitopes = selected_epitopes.sort_values('consensus_score', ascending=False).head(args.max_epitopes)
-        
-        # Extract sequences
-        epitope_sequences = selected_epitopes['sequence'].tolist()
-        
-        print(f"Selected {len(epitope_sequences)} epitopes for the vaccine construct")
+        # Ensure 'sequence' column exists
+        if 'sequence' not in epitopes_df.columns:
+            print("Error: 'sequence' column not found in epitopes file.")
+            epitope_sequences = []
+            selected_epitopes = pd.DataFrame()
+        else:
+            # Handle case where consensus_score might be missing
+            if 'consensus_score' not in epitopes_df.columns:
+                if 'score' in epitopes_df.columns:
+                    epitopes_df['consensus_score'] = epitopes_df['score']
+                else:
+                    # Default score if missing
+                    epitopes_df['consensus_score'] = 0.5
+            
+            # Ensure 'type' column exists
+            if 'type' not in epitopes_df.columns:
+                # Default to 'unknown' type
+                epitopes_df['type'] = 'unknown'
+            
+            # Calculate target counts for each epitope type
+            total_epitopes = min(args.max_epitopes, len(epitopes_df))
+            
+            # Two-step selection for diversity:
+            # 1. First select diverse epitopes within each type
+            b_cell_df = epitopes_df[epitopes_df['type'] == 'B-cell']
+            mhc_i_df = epitopes_df[epitopes_df['type'] == 'MHC-I']
+            mhc_ii_df = epitopes_df[epitopes_df['type'] == 'MHC-II']
+            
+            # Calculate proportional allocations
+            b_cell_count = min(total_epitopes // 3, len(b_cell_df)) if len(b_cell_df) > 0 else 0
+            mhc_i_count = min(total_epitopes // 3, len(mhc_i_df)) if len(mhc_i_df) > 0 else 0
+            mhc_ii_count = min(total_epitopes - b_cell_count - mhc_i_count, len(mhc_ii_df)) if len(mhc_ii_df) > 0 else 0
+            
+            print(f"Allocating epitopes: B-cell: {b_cell_count}, MHC-I: {mhc_i_count}, MHC-II: {mhc_ii_count}")
+            
+            # Select diverse epitopes from each type
+            bcell_epitopes = select_diverse_epitopes(b_cell_df, b_cell_count, args.similarity_threshold) if b_cell_count > 0 else pd.DataFrame(columns=epitopes_df.columns)
+            mhci_epitopes = select_diverse_epitopes(mhc_i_df, mhc_i_count, args.similarity_threshold) if mhc_i_count > 0 else pd.DataFrame(columns=epitopes_df.columns)
+            mhcii_epitopes = select_diverse_epitopes(mhc_ii_df, mhc_ii_count, args.similarity_threshold) if mhc_ii_count > 0 else pd.DataFrame(columns=epitopes_df.columns)
+            
+            # 2. Now combine and ensure diversity across the entire set
+            combined_df = pd.concat([bcell_epitopes, mhci_epitopes, mhcii_epitopes])
+            
+            # If we don't have enough epitopes after the first round, try to fill from remaining
+            if len(combined_df) < total_epitopes:
+                remaining_count = total_epitopes - len(combined_df)
+                print(f"Only selected {len(combined_df)} epitopes in first round, attempting to select {remaining_count} more")
+                
+                # Get sequences we've already selected
+                selected_sequences = combined_df['sequence'].tolist()
+                
+                # Find epitopes we haven't selected yet
+                remaining_df = epitopes_df[~epitopes_df['sequence'].isin(selected_sequences)]
+                
+                if len(remaining_df) > 0:
+                    # Select additional diverse epitopes from remaining
+                    additional_epitopes = select_diverse_epitopes(remaining_df, remaining_count, args.similarity_threshold)
+                    combined_df = pd.concat([combined_df, additional_epitopes])
+            
+            # Final selection
+            selected_epitopes = combined_df.sort_values('consensus_score', ascending=False).head(total_epitopes)
+            
+            # Extract sequences
+            epitope_sequences = selected_epitopes['sequence'].tolist()
+            
+            print(f"Selected {len(epitope_sequences)} diverse epitopes for the vaccine construct")
     
     # Construct the vaccine sequence with linkers
     if len(epitope_sequences) >= args.min_epitopes:
@@ -134,6 +243,7 @@ def main():
             <p><strong>Number of epitopes:</strong> {len(epitope_sequences)}</p>
             <p><strong>Linker sequence:</strong> {args.linker}</p>
             <p><strong>Total length:</strong> {len(vaccine_sequence)} amino acids</p>
+            <p><strong>Similarity threshold:</strong> {args.similarity_threshold}</p>
             
             ''')
         

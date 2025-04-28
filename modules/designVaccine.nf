@@ -61,6 +61,7 @@ process designVaccineConstruct {
             --min-epitopes=${params.min_epitopes ?: 1} \
             --leading-seq=${params.leading_seq ?: ''} \
             --trailing-seq=${params.trailing_seq ?: ''} \
+            --similarity-threshold=${params.similarity_threshold ?: 0.7} \
             --output-fasta=${protein_type}_vaccine_construct.fasta \
             --output-report=${protein_type}_vaccine_report.html
         """
@@ -75,6 +76,7 @@ process designVaccineConstruct {
             --min-epitopes=${params.min_epitopes ?: 1} \
             --leading-seq=${params.leading_seq ?: ''} \
             --trailing-seq=${params.trailing_seq ?: ''} \
+            --similarity-threshold=${params.similarity_threshold ?: 0.7} \
             --output-fasta=${protein_type}_vaccine_construct.fasta \
             --output-report=${protein_type}_vaccine_report.html
         """
