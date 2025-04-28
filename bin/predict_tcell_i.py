@@ -4,35 +4,35 @@ import sys
 import subprocess
 import time
 import argparse
-import random
+import requests
 
 def main():
     # Parse command line arguments
     parser = argparse.ArgumentParser(description='Predict T-cell MHC Class I epitopes from a protein sequence')
     parser.add_argument('--fasta', required=True, help='Input FASTA file')
     parser.add_argument('--protein-type', required=True, help='Protein type (e.g., hemagglutinin, neuraminidase)')
-    parser.add_argument('--method', default='NetMHCpan', help='Prediction method to use')
-    parser.add_argument('--threshold', type=float, default=500, help='IC50 threshold')
+    parser.add_argument('--method', default='recommended', 
+                      choices=['recommended', 'netmhcpan', 'ann', 'smmpmbec', 'smm', 
+                              'comblib_sidney2008', 'netmhccons', 'pickpocket'],
+                      help='Prediction method to use')
+    parser.add_argument('--threshold', type=float, default=500, help='IC50 threshold (nM)')
     parser.add_argument('--length', type=int, default=9, help='Peptide length for MHC Class I epitopes')
     parser.add_argument('--alleles', help='Comma-separated list of HLA alleles')
     parser.add_argument('--output', required=True, help='Output CSV file')
     
     args = parser.parse_args()
     
+    # Handle case insensitivity for method
+    args.method = args.method.lower()
+    
     # Install required packages
     try:
         import pandas as pd
-        import numpy as np
         from Bio import SeqIO
-        import requests
-        import json
     except ImportError:
-        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--user', 'pandas', 'numpy', 'biopython', 'requests'])
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--user', 'pandas', 'biopython', 'requests'])
         import pandas as pd
-        import numpy as np
         from Bio import SeqIO
-        import requests
-        import json
     
     # Read the FASTA file
     try:
@@ -54,73 +54,51 @@ def main():
     print(f"Alleles: {alleles}")
     print(f"Peptide length: {args.length}")
     
-    # Function to generate simulated predictions
-    def generate_predictions(seq, allele, window_size, threshold=500):
-        results = []
-        
-        for i in range(len(seq) - window_size + 1):
-            peptide = seq[i:i+window_size]
-            
-            # Generate plausible IC50 values - lower is better
-            # Values below threshold will be considered hits
-            ic50 = random.uniform(50, 1000)
-            percentile_rank = random.uniform(0.1, 20)
-            
-            # Peptides with charged and aromatic residues often bind better
-            charge_count = sum(1 for aa in peptide if aa in 'RKDE')
-            aromatic_count = sum(1 for aa in peptide if aa in 'FWY')
-            
-            # Adjust IC50 based on composition
-            ic50 = ic50 * (0.8 ** charge_count) * (0.9 ** aromatic_count)
-            
-            # Position-specific adjustments
-            anchor_positions = [1, 2, 9]  # Common anchor positions for MHC-I
-            for pos in anchor_positions:
-                aa = peptide[pos-1] if pos <= len(peptide) else ''
-                if aa in 'ILVMF':  # Hydrophobic amino acids often serve as anchors
-                    ic50 *= 0.7
-            
-            # For specific alleles, adjust further based on known preferences
-            if 'A*02:01' in allele and peptide[1] == 'L':  # HLA-A*02:01 prefers L at position 2
-                ic50 *= 0.5
-            elif 'B*07:02' in allele and peptide[1] == 'P':  # HLA-B*07:02 prefers P at position 2
-                ic50 *= 0.5
-            
-            results.append({
-                'allele': allele,
-                'start': i+1,
-                'end': i+window_size,
-                'length': window_size,
-                'peptide': peptide,
-                'ic50': ic50,
-                'percentile_rank': percentile_rank,
-                'ann_ic50': ic50  # For netmhcpan compatibility
-            })
-        
-        # Filter to only return hits below threshold
-        return [r for r in results if r['ic50'] <= threshold]
+    # IEDB MHC-I API URL
+    url = "http://tools-cluster-interface.iedb.org/tools_api/processing/"
     
-    # Collect results from all alleles
+    # Process all alleles
     all_results = []
-    threshold = float(args.threshold)
     
     for allele in alleles:
         print(f"Processing allele: {allele}")
         
-        # Generate predictions for this allele
-        predictions = generate_predictions(sequence, allele, args.length, threshold)
+        # Prepare API request data
+        data = {
+            'method': args.method,
+            'sequence_text': sequence,
+            'allele': allele,
+            'length': args.length
+        }
         
-        # Add to results
-        for row in predictions:
-            all_results.append({
-                'sequence': row['peptide'],
-                'start': row['start'],
-                'end': row['end'],
-                'score': 1.0 - (min(row['ic50'], 5000) / 5000),  # Convert IC50 to 0-1 score
-                'hla': allele,
-                'ic50': row['ic50'],
-                'percentile_rank': row.get('percentile_rank', 0)
-            })
+        # Make API call with retry mechanism
+        max_retries = 3
+        retry_delay = 5
+        
+        for attempt in range(max_retries):
+            try:
+                print(f"  Calling IEDB API (attempt {attempt+1}/{max_retries})...")
+                response = requests.post(url, data=data, timeout=300)
+                
+                if response.status_code == 200:
+                    try:
+                        # Process the response
+                        predictions = process_iedb_response(response.text, allele, args.threshold, sequence)
+                        all_results.extend(predictions)
+                        break
+                    except Exception as e:
+                        print(f"  Error processing response: {e}")
+                else:
+                    print(f"  API call failed with status code {response.status_code}")
+                    print(f"  Response: {response.text[:500]}...")
+            
+            except Exception as e:
+                print(f"  Error during API call: {e}")
+            
+            # Wait before retry
+            if attempt < max_retries - 1:
+                print(f"  Retrying in {retry_delay} seconds...")
+                time.sleep(retry_delay)
     
     print(f"Total epitopes found: {len(all_results)}")
     
@@ -137,13 +115,91 @@ def main():
     else:
         # Create empty DataFrame if no epitopes found
         epitope_df = pd.DataFrame(columns=['sequence', 'start', 'end', 'score', 'hla', 'ic50', 'percentile_rank', 'type', 'method', 'source'])
-        epitope_df['type'] = 'MHC-I'
-        epitope_df['method'] = args.method
-        epitope_df['source'] = args.protein_type
-        
-        # Save to CSV
         epitope_df.to_csv(args.output, index=False)
-        print(f"T-cell MHC-I epitope prediction complete. No epitopes found below threshold {threshold}.")
+        print(f"T-cell MHC-I epitope prediction complete. No epitopes found below threshold {args.threshold}.")
+
+def process_iedb_response(response_text, allele, threshold, sequence):
+    """Process the IEDB API response to extract epitopes."""
+    results = []
+    
+    try:
+        # Split into lines and skip header
+        lines = response_text.strip().split('\n')
+        if len(lines) <= 1:
+            return results
+            
+        # Identify column positions from header
+        header = lines[0].strip().split('\t')
+        allele_col = header.index('allele') if 'allele' in header else 0
+        peptide_col = header.index('peptide') if 'peptide' in header else 1
+        ic50_col = -1
+        rank_col = -1
+        
+        # Find IC50 and percentile rank columns
+        for i, col in enumerate(header):
+            if 'ic50' in col.lower():
+                ic50_col = i
+            elif 'rank' in col.lower():
+                rank_col = i
+        
+        # Use default positions if columns not found
+        if ic50_col == -1:
+            # Try to find any numeric column that might contain IC50 values
+            for i in range(2, min(len(header), 5)):
+                ic50_col = i
+                break
+                
+        if rank_col == -1 and ic50_col != -1:
+            rank_col = ic50_col + 1 if ic50_col + 1 < len(header) else ic50_col
+        
+        # Process each line (after header)
+        for line in lines[1:]:
+            parts = line.strip().split('\t')
+            
+            if len(parts) > max(peptide_col, ic50_col, 1):
+                try:
+                    # Extract data from response
+                    peptide = parts[peptide_col] if peptide_col < len(parts) else "Unknown"
+                    
+                    # Get IC50 score - try to convert to float, use a high default if it fails
+                    try:
+                        ic50 = float(parts[ic50_col]) if ic50_col < len(parts) else float('inf')
+                    except ValueError:
+                        # Could be a percentile rank instead of IC50
+                        ic50 = 5000
+                    
+                    # Get percentile rank if available
+                    try:
+                        percentile_rank = float(parts[rank_col]) if rank_col < len(parts) else 0
+                    except ValueError:
+                        percentile_rank = 0
+                    
+                    # Only include if below threshold
+                    if ic50 <= threshold:
+                        result = {
+                            'sequence': peptide,
+                            'start': 0,  # Will be updated if found in sequence
+                            'end': 0,    # Will be updated if found in sequence
+                            'score': 1.0 - (min(ic50, 5000) / 5000),  # Convert IC50 to 0-1 score
+                            'hla': allele,
+                            'ic50': ic50,
+                            'percentile_rank': percentile_rank
+                        }
+                        
+                        # Find position in sequence
+                        pos = sequence.find(peptide)
+                        if pos != -1:
+                            result['start'] = pos + 1  # 1-based indexing
+                            result['end'] = pos + len(peptide)
+                            
+                        results.append(result)
+                except (ValueError, IndexError) as e:
+                    print(f"  Error parsing line: {line}, error: {e}")
+    
+    except Exception as e:
+        print(f"  Error processing response: {e}")
+        
+    return results
 
 if __name__ == "__main__":
     main()
