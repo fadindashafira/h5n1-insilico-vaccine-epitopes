@@ -23,9 +23,9 @@ params.retry_delay = 3
 params.max_retries = 5
 
 // Default parameters for epitope prediction
-params.bcell_method = 'Bepipred-2.0'
+params.bcell_method = 'Bepipred-1.0'  // Changed from 2.0 to 1.0
 params.bcell_threshold = 0.5
-params.bcell_length = 12
+params.bcell_length = 9  // Changed from 12 to 9 to match the paper
 
 params.mhci_alleles = ['HLA-A*02:01', 'HLA-B*07:02', 'HLA-B*35:01', 'HLA-A*11:01']
 params.mhci_method = 'NetMHCpan'
@@ -214,4 +214,9 @@ workflow.onComplete {
         log.warn "WARNING: The pipeline completed successfully but no files were found in the output directory: ${params.experiment_output}"
         log.warn "Check that your module processes have publishDir directives with the correct path."
     }
+}
+
+workflow.onError {
+    log.error "Pipeline execution stopped with error: ${workflow.errorMessage}"
+    log.info "You can resume the pipeline with: nextflow run main.nf -resume"
 }
