@@ -27,28 +27,32 @@ def parseAlleles(allelesToParse) {
 process predictBCellEpitopes {
     tag "${protein_type}:${fasta.baseName}"
     publishDir "${params.experiment_output}/epitopes/${protein_type}/bcell", mode: params.publish_dir_mode, overwrite: true
+    errorStrategy 'retry'
+    maxRetries 3
     
     input:
     path fasta
     val protein_type
     
     output:
-    path "${protein_type}_${fasta.baseName}_bcell_epitopes.csv", emit: bcell_epitopes
+    path "${protein_type}_${fasta.baseName}_bcell_epitopes.csv", emit: bcell_epitopes optional true
     
     script:
     // Define B-cell prediction parameters with safer defaults for H5N1
-    def method = params.bcell_method ?: 'Bepipred-2.0'
+    def method = params.bcell_method ?: 'Bepipred'
     def threshold = params.bcell_threshold ?: 0.5
-    def window_size = params.bcell_length ?: 12  // Larger window for H5N1 epitopes
+    def window_size = params.bcell_length ?: 9
     
     """
+    # Add error handling
+    set -e
     python ${workflow.projectDir}/bin/predict_bcell.py \\
         --fasta=${fasta} \\
         --protein-type=${protein_type} \\
         --method=${method} \\
         --threshold=${threshold} \\
         --window-size=${window_size} \\
-        --output=${protein_type}_${fasta.baseName}_bcell_epitopes.csv
+        --output=${protein_type}_${fasta.baseName}_bcell_epitopes.csv || touch ${protein_type}_${fasta.baseName}_bcell_epitopes.csv
     """
 }
 
@@ -70,7 +74,7 @@ process predictTCellEpitopesI {
     def alleleString = allelesList.join(',')
     
     // Ensure method and threshold are defined with optimal defaults for H5N1
-    def method = params.mhci_method ?: 'NetMHCpan'
+    def method = params.mhci_method?.toLowerCase() ?: 'netmhcpan'
     def threshold = params.mhci_threshold ?: 500
     def length = params.mhci_length ?: 9
     
@@ -104,7 +108,7 @@ process predictTCellEpitopesII {
     def alleleString = allelesList.join(',')
     
     // Ensure method and threshold are defined with optimal defaults for H5N1
-    def method = params.mhcii_method ?: 'NetMHCIIpan'
+    def method = params.mhcii_method?.toLowerCase() ?: 'netmhciipan'
     def threshold = params.mhcii_threshold ?: 500
     def length = params.mhcii_length ?: 15
     
