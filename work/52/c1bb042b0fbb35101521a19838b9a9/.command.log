@@ -1,0 +1,24 @@
+Collecting git+https://github.com/mattfemia/iedb-python.git
+  Cloning https://github.com/mattfemia/iedb-python.git to /private/var/folders/yy/n6_7l0ln2qbdx183m164fyr40000gn/T/pip-req-build-arv84u4a
+  Running command git clone --quiet https://github.com/mattfemia/iedb-python.git /private/var/folders/yy/n6_7l0ln2qbdx183m164fyr40000gn/T/pip-req-build-arv84u4a
+  Resolved https://github.com/mattfemia/iedb-python.git to commit 3412eec81526f6166f40b0c4698635b66153fb17
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: pandas>=1.0.0 in /opt/anaconda3/lib/python3.12/site-packages (from iedb==0.0.2) (2.2.2)
+Requirement already satisfied: requests>=2.22.0 in /opt/anaconda3/lib/python3.12/site-packages (from iedb==0.0.2) (2.32.2)
+Requirement already satisfied: numpy>=1.26.0 in /opt/anaconda3/lib/python3.12/site-packages (from pandas>=1.0.0->iedb==0.0.2) (1.26.4)
+Requirement already satisfied: python-dateutil>=2.8.2 in /opt/anaconda3/lib/python3.12/site-packages (from pandas>=1.0.0->iedb==0.0.2) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /opt/anaconda3/lib/python3.12/site-packages (from pandas>=1.0.0->iedb==0.0.2) (2024.1)
+Requirement already satisfied: tzdata>=2022.7 in /opt/anaconda3/lib/python3.12/site-packages (from pandas>=1.0.0->iedb==0.0.2) (2023.3)
+Requirement already satisfied: charset-normalizer<4,>=2 in /opt/anaconda3/lib/python3.12/site-packages (from requests>=2.22.0->iedb==0.0.2) (2.0.4)
+Requirement already satisfied: idna<4,>=2.5 in /opt/anaconda3/lib/python3.12/site-packages (from requests>=2.22.0->iedb==0.0.2) (3.7)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /opt/anaconda3/lib/python3.12/site-packages (from requests>=2.22.0->iedb==0.0.2) (2.2.2)
+Requirement already satisfied: certifi>=2017.4.17 in /opt/anaconda3/lib/python3.12/site-packages (from requests>=2.22.0->iedb==0.0.2) (2024.8.30)
+Requirement already satisfied: six>=1.5 in /opt/anaconda3/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas>=1.0.0->iedb==0.0.2) (1.16.0)
+WARNING: Could not import from IEDB package. Will use fallback prediction method.
+Successfully loaded sequence BAL61222.1 with length 568
+Predicting B-cell epitopes for hemagglutinin using Bepipred-2.0...
+Window size: 9, Threshold: 0.5
+Prediction completed successfully
+Identified 21 potential B-cell epitopes
+B-cell epitope prediction complete. Found 21 epitopes.

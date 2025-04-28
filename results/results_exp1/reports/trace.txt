@@ -1,0 +1,17 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	19/3f2164	5784	retrieveNA (neuraminidase:BAL61230.1)	COMPLETED	0	2025-04-27 12:15:50.727	1.4s	2s	-	-	-	-	-
+5	cc/c22bb3	5853	predictNATCellEpitopesI (neuraminidase:neuraminidase_BAL61230.1)	COMPLETED	0	2025-04-27 12:15:52.195	876ms	1s	-	-	-	-	-
+3	e3/f1792f	5857	predictNATCellEpitopesII (neuraminidase:neuraminidase_BAL61230.1)	COMPLETED	0	2025-04-27 12:15:52.200	872ms	1s	-	-	-	-	-
+4	9f/458170	5851	predictNABCellEpitopes (neuraminidase:neuraminidase_BAL61230.1)	COMPLETED	0	2025-04-27 12:15:52.181	2.6s	2s	-	-	-	-	-
+6	c8/0fe74f	5935	combineNAEpitopes (neuraminidase:combine_epitopes)	COMPLETED	0	2025-04-27 12:15:54.807	285ms	1s	-	-	-	-	-
+7	d8/11f156	5970	designNAVaccine (neuraminidase:design_vaccine)	COMPLETED	0	2025-04-27 12:15:55.108	383ms	0ms	-	-	-	-	-
+2	9d/ddd292	5787	retrieveHA (hemagglutinin:BAL61222.1)	COMPLETED	0	2025-04-27 12:15:50.732	5.3s	6s	-	-	-	-	-
+9	59/c48880	6025	predictHATCellEpitopesI (hemagglutinin:hemagglutinin_BAL61222.1)	COMPLETED	0	2025-04-27 12:15:56.049	626ms	0ms	-	-	-	-	-
+10	1d/f0cfeb	6023	predictHATCellEpitopesII (hemagglutinin:hemagglutinin_BAL61222.1)	COMPLETED	0	2025-04-27 12:15:56.046	631ms	0ms	-	-	-	-	-
+8	17/d22237	5991	evaluateNAVaccine (neuraminidase:evaluate_vaccine)	COMPLETED	0	2025-04-27 12:15:55.503	1.2s	1s	-	-	-	-	-
+11	f6/fab1c0	6022	predictHABCellEpitopes (hemagglutinin:hemagglutinin_BAL61222.1)	COMPLETED	0	2025-04-27 12:15:56.044	2.1s	2s	-	-	-	-	-
+12	8c/747290	6121	combineHAEpitopes (hemagglutinin:combine_epitopes)	COMPLETED	0	2025-04-27 12:15:58.200	276ms	0ms	-	-	-	-	-
+13	da/d583f6	6154	designHAVaccine (hemagglutinin:design_vaccine)	COMPLETED	0	2025-04-27 12:15:58.494	527ms	1s	-	-	-	-	-
+14	b1/6050fa	6157	designCombinedVaccine (combined:design_vaccine)	COMPLETED	0	2025-04-27 12:15:58.499	623ms	1s	-	-	-	-	-
+15	af/283813	6198	evaluateHAVaccine (hemagglutinin:evaluate_vaccine)	COMPLETED	0	2025-04-27 12:15:59.039	1.2s	1s	-	-	-	-	-
+16	4b/fdd5e2	6219	evaluateCombinedVaccine (combined:evaluate_vaccine)	COMPLETED	0	2025-04-27 12:15:59.144	1.1s	1s	-	-	-	-	-

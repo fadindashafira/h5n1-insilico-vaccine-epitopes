@@ -1,0 +1,7 @@
+Designing vaccine construct for hemagglutinin
+Using linker sequence: GPGPG
+Maximum number of epitopes: 10
+Loaded 7323 epitopes from hemagglutinin_combined_epitopes.csv
+Selected 10 epitopes for the vaccine construct
+Vaccine construct saved to hemagglutinin_vaccine_construct.fasta
+Vaccine design report saved to hemagglutinin_vaccine_report.html

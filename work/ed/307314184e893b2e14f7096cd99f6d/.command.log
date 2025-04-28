@@ -1,0 +1,13 @@
+Successfully loaded sequence with length 449
+Predicting T-cell MHC Class II epitopes for neuraminidase using NetMHCIIpan
+Alleles: ['HLA-DRB1*03:01', 'HLA-DRB1*04:01', 'HLA-DRB1*01:01', 'HLA-DRB1*07:01', 'HLA-DRB1*15:01', 'HLA-DRB1*13:01', 'HLA-DRB1*11:01']
+Peptide length: 15
+Processing allele: HLA-DRB1*03:01
+Processing allele: HLA-DRB1*04:01
+Processing allele: HLA-DRB1*01:01
+Processing allele: HLA-DRB1*07:01
+Processing allele: HLA-DRB1*15:01
+Processing allele: HLA-DRB1*13:01
+Processing allele: HLA-DRB1*11:01
+Total epitopes found: 2947
+T-cell MHC-II epitope prediction complete. Found 2947 epitopes.

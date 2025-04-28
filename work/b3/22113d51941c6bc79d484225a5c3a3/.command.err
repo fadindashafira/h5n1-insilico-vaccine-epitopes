@@ -1,0 +1,2 @@
+/opt/anaconda3/lib/python3.12/site-packages/Bio/SeqUtils/ProtParam.py:106: BiopythonDeprecationWarning: The get_amino_acids_percent method has been deprecated and will likely be removed from Biopython in the near future. Please use the amino_acids_percent attribute instead.
+  warnings.warn(

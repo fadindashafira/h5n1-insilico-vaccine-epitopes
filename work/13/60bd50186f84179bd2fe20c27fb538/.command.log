@@ -1,0 +1,13 @@
+Successfully loaded sequence with length 568
+Predicting T-cell MHC Class II epitopes for hemagglutinin using NetMHCIIpan
+Alleles: ['HLA-DRB1*03:01', 'HLA-DRB1*04:01', 'HLA-DRB1*01:01', 'HLA-DRB1*07:01', 'HLA-DRB1*15:01', 'HLA-DRB1*13:01', 'HLA-DRB1*11:01']
+Peptide length: 15
+Processing allele: HLA-DRB1*03:01
+Processing allele: HLA-DRB1*04:01
+Processing allele: HLA-DRB1*01:01
+Processing allele: HLA-DRB1*07:01
+Processing allele: HLA-DRB1*15:01
+Processing allele: HLA-DRB1*13:01
+Processing allele: HLA-DRB1*11:01
+Total epitopes found: 3743
+T-cell MHC-II epitope prediction complete. Found 3743 epitopes.

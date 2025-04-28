@@ -1,0 +1,13 @@
+Successfully loaded sequence with length 449
+Predicting T-cell MHC Class I epitopes for neuraminidase using NetMHCpan
+Alleles: ['HLA-A*02:01', 'HLA-B*07:02', 'HLA-B*35:01', 'HLA-A*11:01', 'HLA-A*24:02', 'HLA-A*01:01', 'HLA-C*07:01']
+Peptide length: 9
+Processing allele: HLA-A*02:01
+Processing allele: HLA-B*07:02
+Processing allele: HLA-B*35:01
+Processing allele: HLA-A*11:01
+Processing allele: HLA-A*24:02
+Processing allele: HLA-A*01:01
+Processing allele: HLA-C*07:01
+Total epitopes found: 2739
+T-cell MHC-I epitope prediction complete. Found 2739 epitopes.

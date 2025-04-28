@@ -1,0 +1,12 @@
+Property,Value,Unit,Interpretation
+Length,160,aa,
+Molecular Weight,17208.23,Da,
+Theoretical pI,11.39,,7-8 is optimal for solubility
+Instability Index,67.38,,<40 suggests stable protein
+GRAVY,-1.7238,,">0 hydrophobic, <0 hydrophilic"
+Aromaticity,0.0063,,Frequency of aromatic AAs
+Epitope Count,10,,
+Allergenicity Score,0.0615,,<0.3 suggests non-allergen
+Helix Fraction,0.2875,fraction,α-helix content
+Sheet Fraction,0.4562,fraction,β-sheet content
+Coil Fraction,0.1188,fraction,Random coil content

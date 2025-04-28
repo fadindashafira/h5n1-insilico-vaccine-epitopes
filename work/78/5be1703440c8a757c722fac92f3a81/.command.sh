@@ -1,0 +1,2 @@
+#!/bin/bash -ue
+python /Users/putriramadani/Documents/GitHub/h5n1-insilico-vaccine-epitopes/bin/design_vaccine.py             --combined-epitopes=hemagglutinin_combined_epitopes.csv             --protein-type=hemagglutinin             --linker=GPGPG             --max-epitopes=10             --min-epitopes=3             --leading-seq=M             --trailing-seq=             --output-fasta=hemagglutinin_vaccine_construct.fasta             --output-report=hemagglutinin_vaccine_report.html

@@ -1,0 +1,14 @@
+sequence,start,end,score,type,method,source
+TVKDRSPHR,128,136,0.5162444444444445,B-cell,Bepipred-2.0,neuraminidase
+VKDRSPHRT,129,137,0.5162444444444445,B-cell,Bepipred-2.0,neuraminidase
+KDRSPHRTL,130,138,0.5175500000000001,B-cell,Bepipred-2.0,neuraminidase
+EAPSPYNSR,145,153,0.5018111111111111,B-cell,Bepipred-2.0,neuraminidase
+PSPYNSRFE,147,155,0.5094888888888889,B-cell,Bepipred-2.0,neuraminidase
+KIFKMRKGK,234,242,0.5025777777777778,B-cell,Bepipred-2.0,neuraminidase
+FGDNPRPND,302,310,0.5096944444444444,B-cell,Bepipred-2.0,neuraminidase
+GDNPRPNDG,303,311,0.5065333333333333,B-cell,Bepipred-2.0,neuraminidase
+DNPRPNDGT,304,312,0.5179277777777778,B-cell,Bepipred-2.0,neuraminidase
+GRTKSTNSR,340,348,0.5087277777777778,B-cell,Bepipred-2.0,neuraminidase
+RTKSTNSRS,341,349,0.5252277777777777,B-cell,Bepipred-2.0,neuraminidase
+IRGRPKEST,407,415,0.5020722222222223,B-cell,Bepipred-2.0,neuraminidase
+RGRPKESTI,408,416,0.5020722222222223,B-cell,Bepipred-2.0,neuraminidase
