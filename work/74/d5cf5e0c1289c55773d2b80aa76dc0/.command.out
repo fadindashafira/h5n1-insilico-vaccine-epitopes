@@ -1,0 +1,10 @@
+Combining epitopes for protein: accession1 
+Reading B-cell epitopes from: accession1_accession1_NP_054712.1_bcell_epitopes.csv 
+Reading T-cell Class I epitopes from: accession1_accession1_NP_054712.1_tcell_i_epitopes.csv 
+Reading T-cell Class II epitopes from: accession1_accession1_NP_054712.1_tcell_ii_epitopes.csv 
+Epitopes combined from multiple prediction methods for accession1 
+Total epitopes: 136 
+Epitope types:
+
+B-cell  MHC-I MHC-II 
+     2     17    117 

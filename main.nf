@@ -11,8 +11,8 @@ nextflow.enable.dsl = 2
 // Set default parameters
 params.outdir = 'results'
 params.experiment_id = 'exp1'
-params.ha_accession = ''
-params.na_accession = ''
+params.accession1 = ''
+params.accession2 = ''
 params.experiment_output = "${params.outdir}/results_${params.experiment_id}"
 params.run_md = false
 params.help = false
@@ -46,25 +46,25 @@ params.min_epitopes = 5
 params.conservation_threshold = 0.9
 
 // Import modules
-include { retrieveSequence as retrieveHA } from './modules/retrieveSequence'
-include { retrieveSequence as retrieveNA } from './modules/retrieveSequence'
-include { predictBCellEpitopes as predictHABCellEpitopes } from './modules/predictEpitopes'
-include { predictTCellEpitopesI as predictHATCellEpitopesI } from './modules/predictEpitopes'
-include { predictTCellEpitopesII as predictHATCellEpitopesII } from './modules/predictEpitopes'
-include { predictBCellEpitopes as predictNABCellEpitopes } from './modules/predictEpitopes'
-include { predictTCellEpitopesI as predictNATCellEpitopesI } from './modules/predictEpitopes'
-include { predictTCellEpitopesII as predictNATCellEpitopesII } from './modules/predictEpitopes'
-include { combineEpitopes as combineHAEpitopes } from './modules/designVaccine'
-include { combineEpitopes as combineNAEpitopes } from './modules/designVaccine'
+include { retrieveSequence as retrieve1 } from './modules/retrieveSequence'
+include { retrieveSequence as retrieve2 } from './modules/retrieveSequence'
+include { predictBCellEpitopes as predict1BCellEpitopes } from './modules/predictEpitopes'
+include { predictTCellEpitopesI as predict1TCellEpitopesI } from './modules/predictEpitopes'
+include { predictTCellEpitopesII as predict1TCellEpitopesII } from './modules/predictEpitopes'
+include { predictBCellEpitopes as predict2BCellEpitopes } from './modules/predictEpitopes'
+include { predictTCellEpitopesI as predict2TCellEpitopesI } from './modules/predictEpitopes'
+include { predictTCellEpitopesII as predict2TCellEpitopesII } from './modules/predictEpitopes'
+include { combineEpitopes as combine1Epitopes } from './modules/designVaccine'
+include { combineEpitopes as combine2Epitopes } from './modules/designVaccine'
 include { combineEpitopes as combinedEpitopes } from './modules/designVaccine'
-include { designVaccineConstruct as designHAVaccine } from './modules/designVaccine'
-include { designVaccineConstruct as designNAVaccine } from './modules/designVaccine'
+include { designVaccineConstruct as designVaccine1 } from './modules/designVaccine'
+include { designVaccineConstruct as designVaccine2 } from './modules/designVaccine'
 include { designVaccineConstruct as designCombinedVaccine } from './modules/designVaccine'
-include { evaluateVaccineConstruct as evaluateHAVaccine } from './modules/evaluateVaccine'
-include { evaluateVaccineConstruct as evaluateNAVaccine } from './modules/evaluateVaccine'
+include { evaluateVaccineConstruct as evaluateVaccine1 } from './modules/evaluateVaccine'
+include { evaluateVaccineConstruct as evaluateVaccine2 } from './modules/evaluateVaccine'
 include { evaluateVaccineConstruct as evaluateCombinedVaccine } from './modules/evaluateVaccine'
-include { molecularDynamics as runHAMD } from './modules/molecularDynamics'
-include { molecularDynamics as runNAMD } from './modules/molecularDynamics'
+include { molecularDynamics as run1MD } from './modules/molecularDynamics'
+include { molecularDynamics as run2MD } from './modules/molecularDynamics'
 include { molecularDynamics as runCombinedMD } from './modules/molecularDynamics'
 
 // Function to display help message
@@ -74,11 +74,11 @@ def helpMessage() {
     IN SILICO VACCINE DESIGN PIPELINE
     =============================================
     Usage:
-    nextflow run main.nf --ha_accession <ha_accession> --na_accession <na_accession> 
+    nextflow run main.nf --accession1 <accession1> --accession2 <accession2> 
     
     Required Parameters:
-      --ha_accession      Hemagglutinin protein accession number from NCBI
-      --na_accession      Neuraminidase protein accession number from NCBI
+      --accession1      accession number 1 from NCBI
+      --accession2      accession number 2 from NCBI
     
     Optional Parameters:
       --outdir            Base output directory (default: results)
@@ -108,8 +108,8 @@ if (params.help) {
 }
 
 // Validate required parameters
-if (!params.ha_accession || !params.na_accession) {
-    log.error "ERROR: Both --ha_accession and --na_accession must be provided"
+if (!params.accession1 || !params.accession2) {
+    log.error "ERROR: Both --accession1 and accession2 must be provided"
     helpMessage()
     exit 1
 }
@@ -127,8 +127,8 @@ log.info"""
 =============================================
  IN SILICO VACCINE DESIGN PIPELINE
 =============================================
- Hemagglutinin accession: ${params.ha_accession}
- Neuraminidase accession: ${params.na_accession}
+ Accession1: ${params.accession1}
+ Accession2: ${params.accession2}
  Base output directory: ${params.outdir}
  Experiment ID: ${params.experiment_id}
  Experiment output directory: ${params.experiment_output}
@@ -139,53 +139,53 @@ log.info"""
 // Main workflow
 workflow {
     // Step 1: Retrieve sequences
-    retrieveHA(params.ha_accession, 'hemagglutinin')
-    ha_seq = retrieveHA.out.fasta
+    retrieve1(params.accession1, 'accession1')
+    seq1 = retrieve1.out.fasta
 
-    retrieveNA(params.na_accession, 'neuraminidase')
-    na_seq = retrieveNA.out.fasta
+    retrieve2(params.accession2, 'accession2')
+    seq2 = retrieve2.out.fasta
     
     // Step 2: Predict epitopes for both proteins
-    ha_bcell = predictHABCellEpitopes(ha_seq, 'hemagglutinin')
-    ha_tcell_i = predictHATCellEpitopesI(ha_seq, 'hemagglutinin')
-    ha_tcell_ii = predictHATCellEpitopesII(ha_seq, 'hemagglutinin')
+    first_bcell = predict1BCellEpitopes(seq1, 'accession1')
+    first_tcell_i = predict1TCellEpitopesI(seq1, 'accession1')
+    first_tcell_ii = predict1TCellEpitopesII(seq1, 'accession1')
     
-    na_bcell = predictNABCellEpitopes(na_seq, 'neuraminidase')
-    na_tcell_i = predictNATCellEpitopesI(na_seq, 'neuraminidase')
-    na_tcell_ii = predictNATCellEpitopesII(na_seq, 'neuraminidase')
+    second_bcell = predict2BCellEpitopes(seq2, 'accession2')
+    second_tcell_i = predict2TCellEpitopesI(seq2, 'accession2')
+    second_tcell_ii = predict2TCellEpitopesII(seq2, 'accession2')
     
     // Step 3: Combine epitopes and design vaccine for each protein
-    ha_combined = combineHAEpitopes(
-        ha_bcell.bcell_epitopes,
-        ha_tcell_i.tcell_i_epitopes,
-        ha_tcell_ii.tcell_ii_epitopes,
-        'hemagglutinin'
+    first_combined = combine1Epitopes(
+        first_bcell.bcell_epitopes,
+        first_tcell_i.tcell_i_epitopes,
+        first_tcell_ii.tcell_ii_epitopes,
+        'accession1'
     )
     
-    na_combined = combineNAEpitopes(
-        na_bcell.bcell_epitopes,
-        na_tcell_i.tcell_i_epitopes,
-        na_tcell_ii.tcell_ii_epitopes,
-        'neuraminidase'
+    second_combined = combine2Epitopes(
+        second_bcell.bcell_epitopes,
+        second_tcell_i.tcell_i_epitopes,
+        second_tcell_ii.tcell_ii_epitopes,
+        'accession2'
     )
     
-    ha_vaccine = designHAVaccine(ha_combined.combined_epitopes, 'hemagglutinin')
-    na_vaccine = designNAVaccine(na_combined.combined_epitopes, 'neuraminidase')
+    vaccine1 = designVaccine1(first_combined.combined_epitopes, 'accession1')
+    vaccine2 = designVaccine2(second_combined.combined_epitopes, 'accession2')
     
-    // Optional: Combine HA and NA epitopes for a multi-target vaccine
+    // Optional: Combine epitopes for a multi-target vaccine
     all_epitopes = Channel.empty()
-    all_epitopes = all_epitopes.mix(ha_combined.combined_epitopes, na_combined.combined_epitopes)
+    all_epitopes = all_epitopes.mix(first_combined.combined_epitopes, second_combined.combined_epitopes)
     combined_vaccine = designCombinedVaccine(all_epitopes.collect(), 'combined')
     
     // Step 4: Evaluate vaccines
-    ha_eval = evaluateHAVaccine(ha_vaccine.vaccine, 'hemagglutinin')
-    na_eval = evaluateNAVaccine(na_vaccine.vaccine, 'neuraminidase')
+    eval1 = evaluateVaccine1(vaccine1.vaccine, 'accession1')
+    eval2 = evaluateVaccine2(vaccine2.vaccine, 'accession2')
     combined_eval = evaluateCombinedVaccine(combined_vaccine.vaccine, 'combined')
     
     // Step 5: Molecular dynamics (optional)
     if (params.run_md) {
-        ha_md = runHAMD(ha_vaccine.vaccine, 'hemagglutinin')
-        na_md = runNAMD(na_vaccine.vaccine, 'neuraminidase')
+        first_md = run1MD(vaccine1.vaccine, 'accession1')
+        second_md = run2MD(vaccine2.vaccine, 'accession2')
         combined_md = runCombinedMD(combined_vaccine.vaccine, 'combined')
     }
 }

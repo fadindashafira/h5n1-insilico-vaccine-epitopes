@@ -1,7 +1,7 @@
 #!/usr/bin/env nextflow
 /*
  * Module for epitope prediction with IEDB integration
- * Optimized for H5N1 vaccine design
+ * Optimized for in silico vaccine design
  */
 
 // Utility function to safely parse alleles
@@ -124,7 +124,7 @@ process predictTCellEpitopesII {
     """
 }
 
-// Epitope filtering and selection for H5N1 vaccine design
+// Epitope filtering and selection for in silico vaccine design
 process filterEpitopes {
     tag "${protein_type}"
     publishDir "${params.experiment_output}/epitopes/${protein_type}/filtered", mode: params.publish_dir_mode, overwrite: true
@@ -149,7 +149,7 @@ process filterEpitopes {
     """
 }
 
-// Optional: Conservation analysis for H5N1 strains
+// Optional: Conservation analysis for strains
 process analyzeConservation {
     tag "${protein_type}"
     publishDir "${params.experiment_output}/conservation/${protein_type}", mode: params.publish_dir_mode, overwrite: true

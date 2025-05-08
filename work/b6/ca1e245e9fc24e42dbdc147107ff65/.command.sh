@@ -1,0 +1,2 @@
+#!/bin/bash -ue
+python /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/bin/design_vaccine.py             --combined-epitopes=accession1_combined_epitopes.csv             --protein-type=accession1             --linker=GPGPG             --max-epitopes=10             --min-epitopes=3             --leading-seq=M             --trailing-seq=             --similarity-threshold=0.7             --output-fasta=accession1_vaccine_construct.fasta             --output-report=accession1_vaccine_report.html

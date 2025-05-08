@@ -1,0 +1,2 @@
+#!/bin/bash -ue
+python /Users/putriramadani/Documents/GitHub/h5n1-insilico-vaccine-epitopes/bin/design_vaccine.py             --combined-epitopes=neuraminidase_combined_epitopes.csv             --protein-type=neuraminidase             --linker=GPGPG             --max-epitopes=10             --min-epitopes=3             --leading-seq=M             --trailing-seq=             --similarity-threshold=0.7             --output-fasta=neuraminidase_vaccine_construct.fasta             --output-report=neuraminidase_vaccine_report.html

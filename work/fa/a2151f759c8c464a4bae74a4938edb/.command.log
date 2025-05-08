@@ -1,0 +1,6 @@
+Successfully loaded sequence BAL61222.1 with length 568
+Predicting B-cell epitopes for hemagglutinin using Bepipred...
+Window size: 9, Threshold: 0.5
+Calling IEDB API (attempt 1/3)...
+Identified 132 potential B-cell epitopes
+B-cell epitope prediction complete. Found 132 epitopes.

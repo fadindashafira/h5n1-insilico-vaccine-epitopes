@@ -1,0 +1,9 @@
+Designing vaccine construct for hemagglutinin
+Using linker sequence: GPGPG
+Maximum number of epitopes: 10
+Similarity threshold: 0.7
+Loaded 1202 epitopes from hemagglutinin_combined_epitopes.csv
+Allocating epitopes: B-cell: 3, MHC-I: 3, MHC-II: 4
+Selected 10 diverse epitopes for the vaccine construct
+Vaccine construct saved to hemagglutinin_vaccine_construct.fasta
+Vaccine design report saved to hemagglutinin_vaccine_report.html
