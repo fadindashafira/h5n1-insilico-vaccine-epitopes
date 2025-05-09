@@ -1,0 +1,6 @@
+Successfully loaded sequence NP_054711.1 with length 538
+Predicting B-cell epitopes for accession2 using Bepipred...
+Window size: 9, Threshold: 0.5
+Calling IEDB API (attempt 1/3)...
+Identified 40 potential B-cell epitopes
+B-cell epitope prediction complete. Found 40 epitopes.

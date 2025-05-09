@@ -1,0 +1,21 @@
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Combining epitopes for protein: accession1 
+Reading B-cell epitopes from: accession1_accession1_ABK40530.1_bcell_epitopes.csv 
+Reading T-cell Class I epitopes from: accession1_accession1_ABK40530.1_tcell_i_epitopes.csv 
+Reading T-cell Class II epitopes from: accession1_accession1_ABK40530.1_tcell_ii_epitopes.csv 
+Epitopes combined from multiple prediction methods for accession1 
+Total epitopes: 1663 
+Epitope types:
+
+B-cell  MHC-I MHC-II 
+   112     84   1467 

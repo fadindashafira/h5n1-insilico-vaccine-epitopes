@@ -1,0 +1,11 @@
+/opt/anaconda3/lib/python3.12/site-packages/Bio/SeqUtils/ProtParam.py:106: BiopythonDeprecationWarning: The get_amino_acids_percent method has been deprecated and will likely be removed from Biopython in the near future. Please use the amino_acids_percent attribute instead.
+  warnings.warn(
+Evaluating hemagglutinin vaccine construct
+Successfully loaded vaccine sequence: 160 amino acids
+Completed BioPython ProtParam analysis
+Predicting B-cell epitopes via IEDB API...
+Found 0 antigenic regions
+Running allergenicity assessment...
+Created FASTA file for ColabFold analysis: hemagglutinin_vaccine_for_colabfold.fasta
+Properties saved to hemagglutinin_vaccine_properties.csv
+Evaluation report saved to hemagglutinin_vaccine_evaluation.txt

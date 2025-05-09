@@ -1,21 +1,20 @@
 # In Silico Vaccine Design Automation
 
-A NextFlow-based pipeline for automated computational vaccine design targeting avian influenza viruses, based on epitope prediction and molecular dynamics simulations.
+A Nextflow-based pipeline for automated epitope-based vaccine design using protein sequences from NCBI. This pipeline supports multiple pathogens and is currently tested on measles, rubella, and mumps viruses using dynamic accession-based inputs.
 
 ## Overview
 
-This pipeline automates the process of designing epitope-based vaccines for H5N1 avian influenza virus using computational methods. The workflow implements the methodology described in:
+This pipeline automates the in silico design of multi-epitope vaccines by integrating:
+1. Protein sequence retrieval from NCBI
+2. B-cell epitope prediction
+3. T-cell epitope prediction (MHC class I & II)
+4. Epitope filtering and ranking
+5. Vaccine construct assembly with linkers
+6. Evaluation of immunological and physicochemical properties
+7. Optional: Molecular dynamics (MD) simulation via Collab2Fold and ChimeraX
 
+Originally inspired by the methodology of:
 > Tambunan et al. Vaccine Design for H5N1 Based on B- and T-cell Epitope Predictions. *Bioinformatics and Biology Insights* 2016:10 27-35.
-
-The pipeline incorporates the following steps:
-1. Retrieve protein sequences from NCBI
-2. Predict B-cell epitopes
-3. Predict T-cell epitopes (MHC class I and II binding)
-4. Filter and select high-quality epitopes
-5. Design a multi-epitope vaccine construct with appropriate linkers
-6. Evaluate vaccine properties
-7. Optional molecular dynamics simulation
 
 ## Requirements
 
@@ -36,15 +35,18 @@ The pipeline incorporates the following steps:
 ## Quick Start
 
 ```bash
-# Clone this repository
-git clone https://github.com/fadindashafira/h5n1-insilico-vaccine-epitopes.git
-cd h5n1-insilico-vaccine-epitopes
+# Clone this forked repository
+git clone https://github.com/putriimnida/automated-insilico-vaccinedesign.git
+cd automated-insilico-vaccinedesign
 
 # Run with default parameters
 ./run_pipeline.sh
 
 # Run with custom parameters
-./run_pipeline.sh --ha_accession "BAL61222.1" --na_accession "BAL61230.1" --experiment_id "exp2"
+./run_pipeline.sh 
+# Check the Default values
+# ACCESSION1="ABK40530.1" -> change it to desired, valid protein accession number
+# ACCESSION2="NP_740664.1" -> change it to desired, valid protein accession number
 
 # Run on a SLURM cluster
 ./run_pipeline.sh --profile slurm
@@ -54,16 +56,17 @@ cd h5n1-insilico-vaccine-epitopes
 
 You can run the pipeline with different parameters:
 
-| Parameter | Description | Default |
-|-----------|-------------|---------|
-| `--ha_accession` | Hemagglutinin protein accession number | BAL61222.1 |
-| `--na_accession` | Neuraminidase protein accession number | BAL61230.1 |
-| `--outdir` | Base output directory | results |
-| `--experiment_id` | Unique identifier for the experiment | exp1 |
-| `--profile` | Execution profile (local, slurm, etc.) | local |
-| `--run_md` | Run molecular dynamics simulation | false |
-| `--resume` | Resume pipeline execution from last checkpoint | false |
-| `--verbose` | Enable verbose logging | false |
+| Parameter         | Description                                             | Default              |
+|------------------|---------------------------------------------------------|----------------------|
+| `--accession1`    | First protein accession number (e.g. surface antigen)  | `'ABK40530.1'`       |
+| `--accession2`    | Second protein accession number (e.g. envelope/fusion) | `'NP_740664.1'`      |
+| `--outdir`        | Base output directory for all results                  | `results`            |
+| `--experiment_id` | Unique identifier for this experiment run              | `exp1`               |
+| `--profile`       | Execution profile (e.g. `local`, `slurm`, `docker`)   | `local`              |
+| `--run_md`        | Enable molecular dynamics simulation                   | `false`              |
+| `--resume`        | Resume from a previously cached run                    | `false`              |
+| `--verbose`       | Enable detailed logging output                         | `false`              |
+| `--help`          | Show pipeline help message                             | `false`              |
 
 ## Output Structure
 
@@ -72,41 +75,34 @@ The pipeline generates a structured output directory for each experiment:
 ```
 results/
 └── results_<experiment_id>/
-    ├── reports/                    # Pipeline execution reports
-    │   ├── dag.html                # Workflow visualization
-    │   ├── execution_report.html   # Execution statistics
-    │   ├── timeline.html           # Execution timeline
-    │   └── trace.txt               # Execution trace
-    ├── sequences/                  # Retrieved protein sequences
-    ├── epitopes/                   # Predicted epitopes
-    │   ├── hemagglutinin/
-    │   │   ├── bcell/              # B-cell epitopes
-    │   │   ├── tcell_i/            # T-cell MHC class I epitopes  
-    │   │   ├── tcell_ii/           # T-cell MHC class II epitopes
-    │   │   └── filtered/           # Filtered epitopes
-    │   └── neuraminidase/
-    │       └── ...
-    ├── vaccine_constructs/         # Designed vaccine sequences
-    │   ├── hemagglutinin_vaccine.fasta
-    │   ├── neuraminidase_vaccine.fasta
-    │   └── combined_vaccine.fasta
-    ├── vaccine_evaluation/         # Evaluation reports
-    └── molecular_dynamics/         # MD simulation results (if enabled)
+    ├── reports/                    # Pipeline reports (DAG, execution timeline)
+    ├── epitopes/                  # Predicted and filtered epitopes
+    │   └── accession1/, accession2/
+    ├── vaccine/                   # Vaccine FASTA and HTML reports
+    ├── evaluation/                # Property and immune evaluations
+    └── molecular_dynamics/       # MD results (if enabled)
+
 ```
 
 ## Customization
 
-You can customize the pipeline by editing the `nextflow.config` file:
+Edit nextflow.config to:
+Change default accessions (tested and validated)
+Add custom HLA alleles (customization under development)
+Switch epitope prediction tools (customization under development)
+Modify epitope thresholds or linker design (customization under development)
 
-- HLA alleles for T-cell epitope prediction
-- Epitope prediction methods and parameters
-- Linker sequences for vaccine construction
-- Resource allocation for high-performance computing
+Run on terminal: bash run_pipeline.sh
 
-```bash
-# Example of running with custom configuration
-./run_pipeline.sh --experiment_id custom_alleles
-```
+
+## Structural Visualization
+
+The image below shows the predicted 3D structure of the measles-rubella multi-epitope vaccine construct, generated with AlphaFold and visualized in ChimeraX:
+
+![Measles-Rubella Vaccine Structure](img/measles_rubella_MDpred.jpg)
+
+*Figure: Ribbon structure with color-coded secondary elements and highlighted core regions.*
+
 
 ## Advanced Usage
 

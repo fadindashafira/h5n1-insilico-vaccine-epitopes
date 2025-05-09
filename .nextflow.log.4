@@ -1,0 +1,192 @@
+May-07 22:42:53.015 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf --accession1 ABK40530.1 --accession2 NP_740664.1 --outdir results --experiment_id exp1 -profile local -with-report results/results_exp1/reports/execution_report.html -with-timeline results/results_exp1/reports/timeline.html -with-trace results/results_exp1/reports/trace.txt -with-dag results/results_exp1/reports/dag_exp1_20250507_224252.html
+May-07 22:42:53.058 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.10.4
+May-07 22:42:53.076 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/putriramadani/.nextflow/plugins; core-plugins: nf-amazon@2.9.2,nf-azure@1.10.2,nf-cloudcache@0.4.2,nf-codecommit@0.2.2,nf-console@1.1.4,nf-google@1.15.3,nf-tower@1.9.3,nf-wave@1.7.4
+May-07 22:42:53.097 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+May-07 22:42:53.097 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+May-07 22:42:53.098 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+May-07 22:42:53.105 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+May-07 22:42:53.115 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/nextflow.config
+May-07 22:42:53.116 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/nextflow.config
+May-07 22:42:53.129 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/putriramadani/.nextflow/secrets/store.json
+May-07 22:42:53.131 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@c9d82f9] - activable => nextflow.secret.LocalSecretsProvider@c9d82f9
+May-07 22:42:53.137 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `local`
+May-07 22:42:53.394 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [slurm, conda, singularity, local, docker]
+May-07 22:42:53.407 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+May-07 22:42:53.416 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [big_booth] DSL2 - revision: d79cd709b5
+May-07 22:42:53.416 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+May-07 22:42:53.416 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+May-07 22:42:53.444 [main] DEBUG nextflow.Session - Session UUID: b54fa048-625a-43cc-8e39-0e82cf309495
+May-07 22:42:53.444 [main] DEBUG nextflow.Session - Run name: big_booth
+May-07 22:42:53.444 [main] DEBUG nextflow.Session - Executor pool size: 8
+May-07 22:42:53.448 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+May-07 22:42:53.450 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-07 22:42:53.465 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.10.4 build 5934
+  Created: 20-01-2025 16:47 UTC (11:47 EDT)
+  System: Mac OS X 14.5
+  Runtime: Groovy 4.0.23 on Java HotSpot(TM) 64-Bit Server VM 23.0.1+11-39
+  Encoding: UTF-8 (UTF-8)
+  Process: 39210@putri-ramadani.local [127.0.0.1]
+  CPUs: 8 - Mem: 16 GB (26.2 MB) - Swap: 0 (0)
+May-07 22:42:53.472 [main] DEBUG nextflow.Session - Work-dir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work [Mac OS X]
+May-07 22:42:53.487 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+May-07 22:42:53.491 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+May-07 22:42:53.509 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+May-07 22:42:53.514 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+May-07 22:42:53.541 [main] DEBUG nextflow.Session - Session start
+May-07 22:42:53.543 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/results/results_exp1/reports/trace.txt
+May-07 22:42:53.714 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+May-07 22:42:53.974 [main] WARN  nextflow.Nextflow - WARNING: No NCBI API key provided. This may limit sequence retrieval capabilities.
+May-07 22:42:53.976 [main] INFO  nextflow.Nextflow - 
+=============================================
+ IN SILICO VACCINE DESIGN PIPELINE
+=============================================
+ Accession1: ABK40530.1
+ Accession2: NP_740664.1
+ Base output directory: results
+ Experiment ID: exp1
+ Experiment output directory: results/results_exp1
+ Run molecular dynamics: false
+ NCBI API key provided: No
+
+May-07 22:42:54.014 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.014 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.017 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+May-07 22:42:54.020 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=16 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+May-07 22:42:54.021 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+May-07 22:42:54.048 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.048 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.054 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.054 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.056 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:predictTCellEpitopesI` matches process predict1TCellEpitopesI
+May-07 22:42:54.057 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.057 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.060 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:predictTCellEpitopesII` matches process predict1TCellEpitopesII
+May-07 22:42:54.060 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.060 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.062 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.063 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.064 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:predictTCellEpitopesI` matches process predict2TCellEpitopesI
+May-07 22:42:54.064 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.064 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.066 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:predictTCellEpitopesII` matches process predict2TCellEpitopesII
+May-07 22:42:54.067 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.067 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.069 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.070 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.072 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.072 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.075 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.075 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.076 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.076 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.096 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.096 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.098 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.098 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.101 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.101 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.104 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:42:54.104 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:42:54.105 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: evaluateVaccine1, predict2TCellEpitopesI, evaluateVaccine2, retrieveSequence, predict2TCellEpitopesII, evaluateVaccineConstruct, molecularDynamics, predictTCellEpitopesI, combine1Epitopes, combine2Epitopes, retrieve2, retrieve1, designVaccineConstruct, evaluateCombinedVaccine, predict1TCellEpitopesII, predictBCellEpitopes, combineEpitopes, designCombinedVaccine, predict1BCellEpitopes, combinedEpitopes, designVaccine1, designVaccine2, runCombinedMD, predict1TCellEpitopesI, filterEpitopes, analyzeConservation, run2MD, run1MD, predict2BCellEpitopes, predictTCellEpitopesII
+May-07 22:42:54.107 [main] DEBUG nextflow.Session - Igniting dataflow network (17)
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > retrieve1
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > retrieve2
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict1BCellEpitopes
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict1TCellEpitopesI
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict1TCellEpitopesII
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict2BCellEpitopes
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict2TCellEpitopesI
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict2TCellEpitopesII
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > combine1Epitopes
+May-07 22:42:54.107 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > combine2Epitopes
+May-07 22:42:54.108 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > designVaccine1
+May-07 22:42:54.108 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > designVaccine2
+May-07 22:42:54.108 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > designCombinedVaccine
+May-07 22:42:54.108 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > evaluateVaccine1
+May-07 22:42:54.108 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > evaluateVaccine2
+May-07 22:42:54.108 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > evaluateCombinedVaccine
+May-07 22:42:54.109 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_63e88ef9526ad381: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/./modules/evaluateVaccine.nf
+  Script_5b025caf20f5edeb: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/./modules/molecularDynamics.nf
+  Script_b6ecd6669aba64a3: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/./modules/retrieveSequence.nf
+  Script_8f76eeeef4dfa0dc: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/./modules/predictEpitopes.nf
+  Script_e7f176acf9971efa: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/./modules/designVaccine.nf
+  Script_af6f36fc053addbc: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/main.nf
+May-07 22:42:54.109 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+May-07 22:42:54.109 [main] DEBUG nextflow.Session - Session await
+May-07 22:42:54.160 [Task submitter] WARN  n.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
+May-07 22:42:54.168 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:42:54.169 [Task submitter] INFO  nextflow.Session - [19/97024d] Submitted process > retrieve1 (accession1:ABK40530.1)
+May-07 22:42:54.185 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:42:54.186 [Task submitter] INFO  nextflow.Session - [18/c479ef] Submitted process > retrieve2 (accession2:NP_740664.1)
+May-07 22:42:55.738 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: retrieve2 (accession2:NP_740664.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/18/c479efc131c708dfe0b30c335931d4]
+May-07 22:42:55.739 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-07 22:42:55.751 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-07 22:42:55.779 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:42:55.780 [Task submitter] INFO  nextflow.Session - [18/76d0a5] Submitted process > predict2BCellEpitopes (accession2:accession2_NP_740664.1)
+May-07 22:42:55.783 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:42:55.783 [Task submitter] INFO  nextflow.Session - [47/b2341f] Submitted process > predict2TCellEpitopesI (accession2:accession2_NP_740664.1)
+May-07 22:42:55.787 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:42:55.788 [Task submitter] INFO  nextflow.Session - [3e/169f62] Submitted process > predict2TCellEpitopesII (accession2:accession2_NP_740664.1)
+May-07 22:42:57.567 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: predict2BCellEpitopes (accession2:accession2_NP_740664.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/18/76d0a5b1b939b8ba2089d37170aa5e]
+May-07 22:42:59.579 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: retrieve1 (accession1:ABK40530.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/19/97024df60ca3cf0f0f79be736544e7]
+May-07 22:42:59.599 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:42:59.599 [Task submitter] INFO  nextflow.Session - [3e/4c46d2] Submitted process > predict1BCellEpitopes (accession1:accession1_ABK40530.1)
+May-07 22:42:59.602 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:42:59.603 [Task submitter] INFO  nextflow.Session - [f3/e523cb] Submitted process > predict1TCellEpitopesII (accession1:accession1_ABK40530.1)
+May-07 22:43:00.870 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: predict1BCellEpitopes (accession1:accession1_ABK40530.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/3e/4c46d291c3908383693b9b091e8688]
+May-07 22:43:00.874 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:00.874 [Task submitter] INFO  nextflow.Session - [99/6bbeb2] Submitted process > predict1TCellEpitopesI (accession1:accession1_ABK40530.1)
+May-07 22:43:14.077 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: predict2TCellEpitopesI (accession2:accession2_NP_740664.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/47/b2341f2f1a78c26160d23ffb138795]
+May-07 22:43:20.945 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: predict1TCellEpitopesI (accession1:accession1_ABK40530.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/99/6bbeb2162f53a3b72131c9e7abbd4a]
+May-07 22:43:30.566 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: predict2TCellEpitopesII (accession2:accession2_NP_740664.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/3e/169f62d170d7cdbbf110380c2e2297]
+May-07 22:43:30.575 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:30.576 [Task submitter] INFO  nextflow.Session - [f8/d076bb] Submitted process > combine2Epitopes (accession2:combine_epitopes)
+May-07 22:43:30.830 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: combine2Epitopes (accession2:combine_epitopes); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/f8/d076bbf89d4cda624383458f49541d]
+May-07 22:43:30.846 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:30.846 [Task submitter] INFO  nextflow.Session - [55/8e9e31] Submitted process > designVaccine2 (accession2:design_vaccine)
+May-07 22:43:31.083 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: designVaccine2 (accession2:design_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/55/8e9e31109f9d9c311fc9e50999d89b]
+May-07 22:43:31.094 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:31.094 [Task submitter] INFO  nextflow.Session - [f8/4c92a8] Submitted process > evaluateVaccine2 (accession2:evaluate_vaccine)
+May-07 22:43:32.141 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: evaluateVaccine2 (accession2:evaluate_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/f8/4c92a8d206ba49179bbe5135868920]
+May-07 22:43:40.402 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: predict1TCellEpitopesII (accession1:accession1_ABK40530.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/f3/e523cbbf1fef2295aabe867d950890]
+May-07 22:43:40.410 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:40.410 [Task submitter] INFO  nextflow.Session - [6a/e43d12] Submitted process > combine1Epitopes (accession1:combine_epitopes)
+May-07 22:43:40.649 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: combine1Epitopes (accession1:combine_epitopes); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/6a/e43d127371b6e08393a4442f4bb5d1]
+May-07 22:43:40.667 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:40.667 [Task submitter] INFO  nextflow.Session - [b6/ca1e24] Submitted process > designVaccine1 (accession1:design_vaccine)
+May-07 22:43:40.669 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:40.669 [Task submitter] INFO  nextflow.Session - [f3/62d996] Submitted process > designCombinedVaccine (combined:design_vaccine)
+May-07 22:43:40.928 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: designVaccine1 (accession1:design_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/b6/ca1e245e9fc24e42dbdc147107ff65]
+May-07 22:43:40.936 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 14; name: designCombinedVaccine (combined:design_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/f3/62d9964934afa2f075d99a1a0a82db]
+May-07 22:43:40.938 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:40.938 [Task submitter] INFO  nextflow.Session - [a4/65443f] Submitted process > evaluateVaccine1 (accession1:evaluate_vaccine)
+May-07 22:43:40.952 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:43:40.952 [Task submitter] INFO  nextflow.Session - [86/1a855a] Submitted process > evaluateCombinedVaccine (combined:evaluate_vaccine)
+May-07 22:43:41.811 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: evaluateVaccine1 (accession1:evaluate_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/a4/65443fb4273019da5fcd5608b2f05c]
+May-07 22:43:41.901 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: evaluateCombinedVaccine (combined:evaluate_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work/86/1a855a1fa1e2e0116f61d42c4ae654]
+May-07 22:43:41.903 [main] DEBUG nextflow.Session - Session await > all processes finished
+May-07 22:43:42.008 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+May-07 22:43:42.008 [main] DEBUG nextflow.Session - Session await > all barriers passed
+May-07 22:43:42.010 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+May-07 22:43:42.010 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+May-07 22:43:42.013 [main] INFO  nextflow.Nextflow - 
+    Pipeline execution summary
+    ---------------------------
+    Completed at: 2025-05-07T22:43:42.010764-04:00
+    Duration    : 48.5s
+    Success     : true
+    workDir     : /Users/putriramadani/Documents/GitHub/measles-rubella-vaccinedesign/work
+    exit status : 0
+    Experiment  : exp1
+    Output dir  : results/results_exp1
+    Files generated: 5
+    
+May-07 22:43:42.015 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=16; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=2m 8s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=4; peakCpus=4; peakMemory=16 GB; ]
+May-07 22:43:42.015 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+May-07 22:43:42.016 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+May-07 22:43:42.560 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+May-07 22:43:42.804 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+May-07 22:43:42.816 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+May-07 22:43:42.816 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

@@ -1,0 +1,17 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	ed/af9231	46335	retrieve2 (accession2:NP_740664.1)	COMPLETED	0	2025-05-07 23:02:00.483	1.5s	1s	-	-	-	-	-
+2	f0/f1f786	46338	retrieve1 (accession1:ABK40530.1)	COMPLETED	0	2025-05-07 23:02:00.487	5.4s	5s	-	-	-	-	-
+7	98/c6ba73	46474	predict1BCellEpitopes (accession1:accession1_ABK40530.1)	COMPLETED	0	2025-05-07 23:02:05.904	1.2s	2s	-	-	-	-	-
+4	a9/0649fa	46398	predict2BCellEpitopes (accession2:accession2_NP_740664.1)	COMPLETED	0	2025-05-07 23:02:02.037	18.7s	18s	-	-	-	-	-
+5	e0/1cc7df	46404	predict2TCellEpitopesI (accession2:accession2_NP_740664.1)	COMPLETED	0	2025-05-07 23:02:02.045	28.5s	28s	-	-	-	-	-
+6	e4/ef8951	46585	predict1TCellEpitopesI (accession1:accession1_ABK40530.1)	COMPLETED	0	2025-05-07 23:02:20.739	17.1s	17s	-	-	-	-	-
+3	d9/6a4705	46399	predict2TCellEpitopesII (accession2:accession2_NP_740664.1)	COMPLETED	0	2025-05-07 23:02:02.041	41.4s	41s	-	-	-	-	-
+9	4d/95e786	46717	combine2Epitopes (accession2:combine_epitopes)	COMPLETED	0	2025-05-07 23:02:43.410	257ms	0ms	-	-	-	-	-
+10	10/39bf3a	46760	designVaccine2 (accession2:design_vaccine)	COMPLETED	0	2025-05-07 23:02:43.688	379ms	1s	-	-	-	-	-
+11	b7/5e9ce6	46783	evaluateVaccine2 (accession2:evaluate_vaccine)	COMPLETED	0	2025-05-07 23:02:44.078	1.2s	1s	-	-	-	-	-
+8	f1/a21d61	46475	predict1TCellEpitopesII (accession1:accession1_ABK40530.1)	COMPLETED	0	2025-05-07 23:02:05.907	49.1s	49s	-	-	-	-	-
+12	43/156836	46859	combine1Epitopes (accession1:combine_epitopes)	COMPLETED	0	2025-05-07 23:02:54.965	238ms	1s	-	-	-	-	-
+13	3c/1dcfb7	46894	designVaccine1 (accession1:design_vaccine)	COMPLETED	0	2025-05-07 23:02:55.220	490ms	0ms	-	-	-	-	-
+14	3b/d3016b	46895	designCombinedVaccine (combined:design_vaccine)	COMPLETED	0	2025-05-07 23:02:55.222	526ms	0ms	-	-	-	-	-
+15	68/99f60c	46938	evaluateVaccine1 (accession1:evaluate_vaccine)	COMPLETED	0	2025-05-07 23:02:55.726	1.2s	1s	-	-	-	-	-
+16	86/989efe	46959	evaluateCombinedVaccine (combined:evaluate_vaccine)	COMPLETED	0	2025-05-07 23:02:55.757	1.3s	2s	-	-	-	-	-

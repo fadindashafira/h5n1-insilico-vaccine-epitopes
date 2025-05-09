@@ -1,0 +1,6 @@
+Successfully loaded sequence BAL61230.1 with length 449
+Predicting B-cell epitopes for neuraminidase using Bepipred...
+Window size: 9, Threshold: 0.5
+Calling IEDB API (attempt 1/3)...
+Identified 152 potential B-cell epitopes
+B-cell epitope prediction complete. Found 152 epitopes.

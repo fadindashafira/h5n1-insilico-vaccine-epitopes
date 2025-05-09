@@ -1,0 +1,5 @@
+Collecting git+https://github.com/mattfemia/iedb-python.git
+  Cloning https://github.com/mattfemia/iedb-python.git to /private/var/folders/yy/n6_7l0ln2qbdx183m164fyr40000gn/T/pip-req-build-1969veuz
+  Running command git clone --quiet https://github.com/mattfemia/iedb-python.git /private/var/folders/yy/n6_7l0ln2qbdx183m164fyr40000gn/T/pip-req-build-1969veuz
+  Resolved https://github.com/mattfemia/iedb-python.git to commit 3412eec81526f6166f40b0c4698635b66153fb17
+  Installing build dependencies: started

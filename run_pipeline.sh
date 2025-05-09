@@ -7,8 +7,8 @@
 set -e
 
 # Default values
-HA_ACCESSION="BAL61222.1"
-NA_ACCESSION="BAL61230.1"
+ACCESSION1="ABK40530.1"
+ACCESSION2="NP_740664.1"
 OUTPUT_DIR="results"
 EXPERIMENT_ID="exp1"
 PROFILE="local"
@@ -21,12 +21,12 @@ VERBOSE=false
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --ha_accession)
-      HA_ACCESSION="$2"
+    --accession1)
+      ACCESSION1="$2"
       shift 2
       ;;
-    --na_accession)
-      NA_ACCESSION="$2"
+    --accession2)
+      ACCESSION2="$2"
       shift 2
       ;;
     --outdir)
@@ -76,8 +76,8 @@ if [ "$HELP" = true ]; then
   echo "Usage: ./run_pipeline.sh [options]"
   echo ""
   echo "Options:"
-  echo "  --ha_accession VALUE   Hemagglutinin accession number (default: $HA_ACCESSION)"
-  echo "  --na_accession VALUE   Neuraminidase accession number (default: $NA_ACCESSION)"
+  echo "  --accession1 VALUE     accession number 1 (default: $ACCESSION1)"
+  echo "  --accession2 VALUE     accession number 2 (default: $ACCESSION2)"
   echo "  --outdir VALUE         Base output directory (default: $OUTPUT_DIR)"
   echo "  --experiment_id VALUE  Experiment identifier (default: $EXPERIMENT_ID)"
   echo "  --profile VALUE        Configuration profile (default: $PROFILE)"
@@ -135,8 +135,8 @@ fi
 
 # Create command string
 CMD="nextflow run main.nf"
-CMD+=" --ha_accession '$HA_ACCESSION'"
-CMD+=" --na_accession '$NA_ACCESSION'"
+CMD+=" --accession1 '$ACCESSION1'"
+CMD+=" --accession2 '$ACCESSION2'"
 CMD+=" --outdir '$OUTPUT_DIR'"
 CMD+=" --experiment_id '$EXPERIMENT_ID'"
 
@@ -168,8 +168,8 @@ fi
 # Print the command
 echo "Running: $CMD"
 echo "=================================================="
-echo "Hemagglutinin accession: $HA_ACCESSION"
-echo "Neuraminidase accession: $NA_ACCESSION"
+echo "Accession 1: $ACCESSION1"
+echo "Accession 2: $ACCESSION2"
 echo "Base output directory: $OUTPUT_DIR"
 echo "Experiment ID: $EXPERIMENT_ID"
 echo "Experiment output directory: $EXPERIMENT_OUTPUT_DIR"

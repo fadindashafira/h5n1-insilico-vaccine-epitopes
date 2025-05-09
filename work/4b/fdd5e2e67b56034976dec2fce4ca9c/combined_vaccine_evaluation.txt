@@ -1,0 +1,57 @@
+COMBINED Vaccine Construct Evaluation
+=========================================
+
+Sequence Length: 160 amino acids
+Molecular Weight: 17220.34 Da
+Theoretical pI: 11.44
+Instability Index: 62.07 (<40 suggests a stable protein)
+Grand Average of Hydropathy (GRAVY): -1.5962
+Aromaticity: 0.0250
+Number of Epitopes: 10
+Allergenicity Prediction: Probable Non-Allergen
+Allergenicity Score: 0.0593 (<0.3 suggests non-allergen)
+Secondary Structure: 0.26 helix, 0.47 sheet, 0.14 coil
+
+Amino Acid Composition:
+  A: 0.01%
+  C: 0.00%
+  D: 0.03%
+  E: 0.07%
+  F: 0.01%
+  G: 0.22%
+  H: 0.01%
+  I: 0.03%
+  K: 0.12%
+  L: 0.04%
+  M: 0.02%
+  N: 0.04%
+  P: 0.13%
+  Q: 0.03%
+  R: 0.14%
+  S: 0.06%
+  T: 0.02%
+  V: 0.03%
+  W: 0.01%
+  Y: 0.01%
+
+Predicted Antigenic Regions:
+  No significant antigenic regions detected or prediction failed
+
+Sequence:
+MILEKTHNGKGPGPGNLYDKVRLQGPGPGRNSPQRESRRKKRGLGPGPGIFKMRKGKVGP
+GPGLERRIENLNKKMEDGGPGPGSEEARLKREEINGVKGPGPGDPNGWTGTDSSFSVKGP
+GPGQRESRRKKRGPGPGPQRESRRKKGPGPGRESRRKKRG
+
+
+Notes:
+- This evaluation was performed using optimized tools:
+  * BioPython ProtParam for physicochemical properties
+  * IEDB API for antigenicity prediction
+  * Rule-based model for allergenicity assessment
+- For 3D structure prediction, please use the generated FASTA file with Google Colab and ColabFold:
+  * Upload the file 'combined_vaccine_for_colabfold.fasta' to Google Drive
+  * Use a ColabFold notebook for structure prediction
+- For a more comprehensive evaluation, consider:
+  1. Experimental validation of immunogenicity
+  2. Testing against diverse HLA alleles
+  3. Comparison with known effective vaccine epitopes

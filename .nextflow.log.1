@@ -1,0 +1,193 @@
+May-07 22:57:02.519 [main] DEBUG nextflow.cli.Launcher - $> nextflow run main.nf --accession1 ABK40530.1 --accession2 NP_740664.1 --outdir results --experiment_id exp1 -profile local -with-report results/results_exp1/reports/execution_report.html -with-timeline results/results_exp1/reports/timeline.html -with-trace results/results_exp1/reports/trace.txt -with-dag results/results_exp1/reports/dag_exp1_20250507_225701.html
+May-07 22:57:02.563 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.10.4
+May-07 22:57:02.579 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/putriramadani/.nextflow/plugins; core-plugins: nf-amazon@2.9.2,nf-azure@1.10.2,nf-cloudcache@0.4.2,nf-codecommit@0.2.2,nf-console@1.1.4,nf-google@1.15.3,nf-tower@1.9.3,nf-wave@1.7.4
+May-07 22:57:02.599 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+May-07 22:57:02.600 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+May-07 22:57:02.601 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+May-07 22:57:02.607 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+May-07 22:57:02.617 [main] DEBUG nextflow.config.ConfigBuilder - Found config local: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/nextflow.config
+May-07 22:57:02.618 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/nextflow.config
+May-07 22:57:02.631 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/putriramadani/.nextflow/secrets/store.json
+May-07 22:57:02.632 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@720653c2] - activable => nextflow.secret.LocalSecretsProvider@720653c2
+May-07 22:57:02.638 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `local`
+May-07 22:57:02.892 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [slurm, conda, singularity, local, docker]
+May-07 22:57:02.907 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+May-07 22:57:02.914 [main] DEBUG nextflow.cli.CmdRun - Launching `main.nf` [pensive_babbage] DSL2 - revision: d79cd709b5
+May-07 22:57:02.915 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+May-07 22:57:02.915 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+May-07 22:57:02.944 [main] DEBUG nextflow.Session - Session UUID: 19435bb0-75ad-4917-8d9d-a8ff713a9a67
+May-07 22:57:02.944 [main] DEBUG nextflow.Session - Run name: pensive_babbage
+May-07 22:57:02.944 [main] DEBUG nextflow.Session - Executor pool size: 8
+May-07 22:57:02.948 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+May-07 22:57:02.950 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-07 22:57:02.964 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.10.4 build 5934
+  Created: 20-01-2025 16:47 UTC (11:47 EDT)
+  System: Mac OS X 14.5
+  Runtime: Groovy 4.0.23 on Java HotSpot(TM) 64-Bit Server VM 23.0.1+11-39
+  Encoding: UTF-8 (UTF-8)
+  Process: 44517@putri-ramadani.local [127.0.0.1]
+  CPUs: 8 - Mem: 16 GB (50.5 MB) - Swap: 0 (0)
+May-07 22:57:02.971 [main] DEBUG nextflow.Session - Work-dir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work [Mac OS X]
+May-07 22:57:02.986 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+May-07 22:57:02.990 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+May-07 22:57:03.008 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+May-07 22:57:03.012 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+May-07 22:57:03.042 [main] DEBUG nextflow.Session - Session start
+May-07 22:57:03.043 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/results/results_exp1/reports/trace.txt
+May-07 22:57:03.218 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+May-07 22:57:03.474 [main] WARN  nextflow.Nextflow - WARNING: No NCBI API key provided. This may limit sequence retrieval capabilities.
+May-07 22:57:03.476 [main] INFO  nextflow.Nextflow - 
+=============================================
+ IN SILICO VACCINE DESIGN PIPELINE
+=============================================
+ Accession1: ABK40530.1
+ Accession2: NP_740664.1
+ Base output directory: results
+ Experiment ID: exp1
+ Experiment output directory: results/results_exp1
+ Run molecular dynamics: false
+ NCBI API key provided: No
+
+May-07 22:57:03.517 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.517 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.520 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+May-07 22:57:03.523 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=16 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+May-07 22:57:03.525 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+May-07 22:57:03.552 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.552 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.557 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.557 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.560 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:predictTCellEpitopesI` matches process predict1TCellEpitopesI
+May-07 22:57:03.561 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.561 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.563 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:predictTCellEpitopesII` matches process predict1TCellEpitopesII
+May-07 22:57:03.563 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.563 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.565 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.565 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.567 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:predictTCellEpitopesI` matches process predict2TCellEpitopesI
+May-07 22:57:03.567 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.567 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.568 [main] DEBUG nextflow.script.ProcessConfig - Config settings `withName:predictTCellEpitopesII` matches process predict2TCellEpitopesII
+May-07 22:57:03.569 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.569 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.571 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.571 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.573 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.573 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.576 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.576 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.578 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.578 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.593 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.593 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.596 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.597 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.599 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.599 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.602 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: local
+May-07 22:57:03.602 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+May-07 22:57:03.604 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: evaluateVaccine1, predict2TCellEpitopesI, evaluateVaccine2, retrieveSequence, predict2TCellEpitopesII, evaluateVaccineConstruct, molecularDynamics, predictTCellEpitopesI, combine1Epitopes, combine2Epitopes, retrieve2, retrieve1, designVaccineConstruct, evaluateCombinedVaccine, predict1TCellEpitopesII, predictBCellEpitopes, combineEpitopes, designCombinedVaccine, predict1BCellEpitopes, combinedEpitopes, designVaccine1, designVaccine2, runCombinedMD, predict1TCellEpitopesI, filterEpitopes, analyzeConservation, run2MD, run1MD, predict2BCellEpitopes, predictTCellEpitopesII
+May-07 22:57:03.605 [main] DEBUG nextflow.Session - Igniting dataflow network (17)
+May-07 22:57:03.605 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > retrieve1
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > retrieve2
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict1BCellEpitopes
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict1TCellEpitopesI
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict1TCellEpitopesII
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict2BCellEpitopes
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict2TCellEpitopesI
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > predict2TCellEpitopesII
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > combine1Epitopes
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > combine2Epitopes
+May-07 22:57:03.606 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > designVaccine1
+May-07 22:57:03.607 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > designVaccine2
+May-07 22:57:03.607 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > designCombinedVaccine
+May-07 22:57:03.607 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > evaluateVaccine1
+May-07 22:57:03.607 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > evaluateVaccine2
+May-07 22:57:03.607 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > evaluateCombinedVaccine
+May-07 22:57:03.607 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_63e88ef9526ad381: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/./modules/evaluateVaccine.nf
+  Script_5b025caf20f5edeb: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/./modules/molecularDynamics.nf
+  Script_b6ecd6669aba64a3: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/./modules/retrieveSequence.nf
+  Script_8f76eeeef4dfa0dc: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/./modules/predictEpitopes.nf
+  Script_e7f176acf9971efa: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/./modules/designVaccine.nf
+  Script_af6f36fc053addbc: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/main.nf
+May-07 22:57:03.607 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+May-07 22:57:03.607 [main] DEBUG nextflow.Session - Session await
+May-07 22:57:03.670 [Task submitter] WARN  n.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
+May-07 22:57:03.683 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:03.685 [Task submitter] INFO  nextflow.Session - [5b/746778] Submitted process > retrieve1 (accession1:ABK40530.1)
+May-07 22:57:03.690 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:03.691 [Task submitter] INFO  nextflow.Session - [47/783d04] Submitted process > retrieve2 (accession2:NP_740664.1)
+May-07 22:57:05.108 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: retrieve2 (accession2:NP_740664.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/47/783d0421ea418e1b225167dea88acd]
+May-07 22:57:05.109 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-07 22:57:05.121 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+May-07 22:57:05.144 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:05.144 [Task submitter] INFO  nextflow.Session - [5c/4503cd] Submitted process > predict2BCellEpitopes (accession2:accession2_NP_740664.1)
+May-07 22:57:05.149 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:05.150 [Task submitter] INFO  nextflow.Session - [ef/d8b6f2] Submitted process > predict2TCellEpitopesII (accession2:accession2_NP_740664.1)
+May-07 22:57:05.154 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:05.155 [Task submitter] INFO  nextflow.Session - [bd/25d4eb] Submitted process > predict2TCellEpitopesI (accession2:accession2_NP_740664.1)
+May-07 22:57:07.328 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: predict2BCellEpitopes (accession2:accession2_NP_740664.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/5c/4503cde2c89fa2f97bfe3407bde575]
+May-07 22:57:09.456 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: retrieve1 (accession1:ABK40530.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/5b/74677810128413a5c62f3b0c6bba82]
+May-07 22:57:09.478 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:09.478 [Task submitter] INFO  nextflow.Session - [7c/202926] Submitted process > predict1BCellEpitopes (accession1:accession1_ABK40530.1)
+May-07 22:57:09.481 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:09.481 [Task submitter] INFO  nextflow.Session - [19/38f42a] Submitted process > predict1TCellEpitopesI (accession1:accession1_ABK40530.1)
+May-07 22:57:10.544 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: predict1BCellEpitopes (accession1:accession1_ABK40530.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/7c/202926866d056aa0c55e39b2a26889]
+May-07 22:57:10.547 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:10.547 [Task submitter] INFO  nextflow.Session - [38/867370] Submitted process > predict1TCellEpitopesII (accession1:accession1_ABK40530.1)
+May-07 22:57:56.120 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: predict2TCellEpitopesI (accession2:accession2_NP_740664.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/bd/25d4ebd791c7ee93bf92691cd9bd4a]
+May-07 22:57:58.721 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: predict2TCellEpitopesII (accession2:accession2_NP_740664.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/ef/d8b6f2e58da4da46c9696a6243c85a]
+May-07 22:57:58.730 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:58.730 [Task submitter] INFO  nextflow.Session - [ed/c3f4ba] Submitted process > combine2Epitopes (accession2:combine_epitopes)
+May-07 22:57:58.999 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: combine2Epitopes (accession2:combine_epitopes); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/ed/c3f4baa1a9f5563c60fc1c3f403927]
+May-07 22:57:59.015 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:59.015 [Task submitter] INFO  nextflow.Session - [8f/916934] Submitted process > designVaccine2 (accession2:design_vaccine)
+May-07 22:57:59.409 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: designVaccine2 (accession2:design_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/8f/91693485f4426f7f1c2925e864a9e4]
+May-07 22:57:59.419 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:57:59.419 [Task submitter] INFO  nextflow.Session - [2b/c70402] Submitted process > evaluateVaccine2 (accession2:evaluate_vaccine)
+May-07 22:58:00.611 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: evaluateVaccine2 (accession2:evaluate_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/2b/c70402edf4438717c462c05ebc1c45]
+May-07 22:58:07.653 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: predict1TCellEpitopesI (accession1:accession1_ABK40530.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/19/38f42a4dc3cdf6f9597e2452578eaf]
+May-07 22:58:22.043 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: predict1TCellEpitopesII (accession1:accession1_ABK40530.1); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/38/867370e3e388b25b71a188fc5cbb1e]
+May-07 22:58:22.049 [Task submitter] WARN  n.executor.BashWrapperBuilder - Task runtime metrics are not reported when using macOS without a container engine
+May-07 22:58:22.051 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:58:22.051 [Task submitter] INFO  nextflow.Session - [4f/499f5a] Submitted process > combine1Epitopes (accession1:combine_epitopes)
+May-07 22:58:22.288 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: combine1Epitopes (accession1:combine_epitopes); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/4f/499f5ab2c423b470b7d09db9ae7003]
+May-07 22:58:22.305 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:58:22.305 [Task submitter] INFO  nextflow.Session - [8c/8f2ed0] Submitted process > designVaccine1 (accession1:design_vaccine)
+May-07 22:58:22.307 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:58:22.307 [Task submitter] INFO  nextflow.Session - [68/eb2060] Submitted process > designCombinedVaccine (combined:design_vaccine)
+May-07 22:58:22.851 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: designVaccine1 (accession1:design_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/8c/8f2ed00b4d0d4b9736539da253c7e2]
+May-07 22:58:22.851 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 14; name: designCombinedVaccine (combined:design_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/68/eb2060373b0f8cade5492cfca27123]
+May-07 22:58:22.860 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:58:22.860 [Task submitter] INFO  nextflow.Session - [80/9228fc] Submitted process > evaluateVaccine1 (accession1:evaluate_vaccine)
+May-07 22:58:22.862 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+May-07 22:58:22.862 [Task submitter] INFO  nextflow.Session - [0f/37f62e] Submitted process > evaluateCombinedVaccine (combined:evaluate_vaccine)
+May-07 22:58:23.928 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: evaluateVaccine1 (accession1:evaluate_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/80/9228fc01f3dfb3d70075a1f4009da5]
+May-07 22:58:24.093 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: evaluateCombinedVaccine (combined:evaluate_vaccine); status: COMPLETED; exit: 0; error: -; workDir: /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work/0f/37f62e372b3ea0877b616ac3356097]
+May-07 22:58:24.097 [main] DEBUG nextflow.Session - Session await > all processes finished
+May-07 22:58:24.199 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+May-07 22:58:24.199 [main] DEBUG nextflow.Session - Session await > all barriers passed
+May-07 22:58:24.202 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+May-07 22:58:24.202 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+May-07 22:58:24.205 [main] INFO  nextflow.Nextflow - 
+    Pipeline execution summary
+    ---------------------------
+    Completed at: 2025-05-07T22:58:24.202713-04:00
+    Duration    : 1m 21s
+    Success     : true
+    workDir     : /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/work
+    exit status : 0
+    Experiment  : exp1
+    Output dir  : results/results_exp1
+    Files generated: 5
+    
+May-07 22:58:24.208 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=16; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=4m 9s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=4; peakCpus=4; peakMemory=16 GB; ]
+May-07 22:58:24.208 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+May-07 22:58:24.208 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+May-07 22:58:24.742 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+May-07 22:58:24.904 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+May-07 22:58:24.915 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+May-07 22:58:24.915 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

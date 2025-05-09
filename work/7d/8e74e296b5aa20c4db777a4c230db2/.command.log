@@ -1,0 +1,7 @@
+Designing vaccine construct for neuraminidase
+Using linker sequence: GPGPG
+Maximum number of epitopes: 10
+Loaded 5699 epitopes from neuraminidase_combined_epitopes.csv
+Selected 10 epitopes for the vaccine construct
+Vaccine construct saved to neuraminidase_vaccine_construct.fasta
+Vaccine design report saved to neuraminidase_vaccine_report.html
