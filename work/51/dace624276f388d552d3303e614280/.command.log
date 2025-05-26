@@ -1,0 +1,9 @@
+Designing vaccine construct for accession2
+Using linker sequence: GPGPG
+Maximum number of epitopes: 10
+Similarity threshold: 0.7
+Loaded 727 epitopes from accession2_combined_epitopes.csv
+Allocating epitopes: B-cell: 3, MHC-I: 3, MHC-II: 4
+Selected 10 diverse epitopes for the vaccine construct
+Vaccine construct saved to accession2_vaccine_construct.fasta
+Vaccine design report saved to accession2_vaccine_report.html

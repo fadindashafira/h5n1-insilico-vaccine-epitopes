@@ -30,3 +30,27 @@ process evaluateVaccineConstruct {
         --output-colabfold=${protein_type}_vaccine_for_colabfold.fasta
     """
 }
+
+// Evaluate allergenicity using AllerTop and toxicity using ToxinPred
+process screenEpitopeAllergenToxic {
+    tag "${protein_type}:screen_epitopes"
+    publishDir "${params.experiment_output}/evaluation/${protein_type}", mode: params.publish_dir_mode, overwrite: true
+
+    input:
+    path bcell_epitopes
+    path tcell_i_epitopes
+    path tcell_ii_epitopes
+    val protein_type
+
+    output:
+    path "${protein_type}_epitope_screening.csv", emit: screening_table
+
+    script:
+    """
+    python ${workflow.projectDir}/bin/screen_epitopes.py \\
+      --bcell ${bcell_epitopes} \\
+      --tcelli ${tcell_i_epitopes} \\
+      --tcellii ${tcell_ii_epitopes} \\
+      --output ${protein_type}_epitope_screening.csv
+    """
+}
