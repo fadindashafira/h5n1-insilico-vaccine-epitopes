@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/bin/screen_epitopes.py", line 101, in <module>
+    main()
+  File "/Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/bin/screen_epitopes.py", line 90, in main
+    allergen = submit_to_allertop(ep, driver)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/bin/screen_epitopes.py", line 29, in submit_to_allertop
+    WebDriverWait(driver, 40).until(
+  File "/Users/putriramadani/.pyenv/versions/3.12.4/lib/python3.12/site-packages/selenium/webdriver/support/wait.py", line 138, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+Stacktrace:
+0   chromedriver                        0x0000000102a583e0 cxxbridge1$str$ptr + 2829900
+1   chromedriver                        0x0000000102a506a8 cxxbridge1$str$ptr + 2797844
+2   chromedriver                        0x000000010258dfbc cxxbridge1$string$len + 90140
+3   chromedriver                        0x00000001025d51bc cxxbridge1$string$len + 381468
+4   chromedriver                        0x0000000102616044 cxxbridge1$string$len + 647332
+5   chromedriver                        0x00000001025c93f8 cxxbridge1$string$len + 332888
+6   chromedriver                        0x0000000102a1c804 cxxbridge1$str$ptr + 2585200
+7   chromedriver                        0x0000000102a1fad4 cxxbridge1$str$ptr + 2598208
+8   chromedriver                        0x00000001029fddd8 cxxbridge1$str$ptr + 2459716
+9   chromedriver                        0x0000000102a2034c cxxbridge1$str$ptr + 2600376
+10  chromedriver                        0x00000001029ef664 cxxbridge1$str$ptr + 2400464
+11  chromedriver                        0x0000000102a402b0 cxxbridge1$str$ptr + 2731292
+12  chromedriver                        0x0000000102a4043c cxxbridge1$str$ptr + 2731688
+13  chromedriver                        0x0000000102a502f4 cxxbridge1$str$ptr + 2796896
+14  libsystem_pthread.dylib             0x000000019356ef94 _pthread_start + 136
+15  libsystem_pthread.dylib             0x0000000193569d34 thread_start + 8
+

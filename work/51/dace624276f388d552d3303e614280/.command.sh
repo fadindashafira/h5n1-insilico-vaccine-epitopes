@@ -1,0 +1,2 @@
+#!/bin/bash -ue
+python /Users/putriramadani/Documents/GitHub/automated-insilico-vaccinedesign/bin/design_vaccine.py             --combined-epitopes=accession2_combined_epitopes.csv             --protein-type=accession2             --linker=GPGPG             --max-epitopes=10             --min-epitopes=3             --leading-seq=M             --trailing-seq=             --similarity-threshold=0.7             --output-fasta=accession2_vaccine_construct.fasta             --output-report=accession2_vaccine_report.html

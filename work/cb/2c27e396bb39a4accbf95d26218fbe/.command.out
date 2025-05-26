@@ -1,0 +1,34 @@
+Successfully loaded sequence with length 617
+Predicting T-cell MHC Class II epitopes for accession1 using netmhciipan
+Alleles: ['HLA-DRB1*03:01', 'HLA-DRB1*04:01', 'HLA-DRB1*01:01', 'HLA-DRB1*07:01', 'HLA-DRB1*15:01', 'HLA-DRB1*13:01', 'HLA-DRB1*11:01']
+Peptide length: 15
+Processing allele: HLA-DRB1*03:01
+  Calling IEDB API (attempt 1/3)...
+Processing allele: HLA-DRB1*04:01
+  Calling IEDB API (attempt 1/3)...
+Processing allele: HLA-DRB1*01:01
+  Calling IEDB API (attempt 1/3)...
+Processing allele: HLA-DRB1*07:01
+  Calling IEDB API (attempt 1/3)...
+Processing allele: HLA-DRB1*15:01
+  Calling IEDB API (attempt 1/3)...
+Processing allele: HLA-DRB1*13:01
+  Calling IEDB API (attempt 1/3)...
+Processing allele: HLA-DRB1*11:01
+  Calling IEDB API (attempt 1/3)...
+  API call failed with status code 403
+  Response: <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>403 Forbidden</title>
+</head><body>
+<h1>Forbidden</h1>
+<p>You don't have permission to access /tools_api/mhcii/
+on this server.</p>
+<hr>
+<address>Apache/2.4.6 (CentOS) Server at tools-cluster-interface.iedb.org Port 80</address>
+</body></html>
+...
+  Retrying in 5 seconds...
+  Calling IEDB API (attempt 2/3)...
+Total epitopes found: 1467
+T-cell MHC-II epitope prediction complete. Found 1467 epitopes.
